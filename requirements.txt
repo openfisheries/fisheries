@@ -1,6 +1,7 @@
 Click>=7.0
-shapely
-pyproj
-sqlalchemy
 geoalchemy2
 psycopg2-binary
+pyproj
+shapely
+sqlalchemy
+reportlab
