@@ -7,11 +7,14 @@ from pygeoapi.process.base import BaseProcessor, ProcessorExecuteError
 
 
 output = """
-<table>
-    <tr><td><b>{name}</b></td><td>Landings</td><td>Revenues</td></tr>
-    <tr><td><b>Total</b></td><td></td><td></td></tr>
+<table class="ms-2 table">
+  <thead>
+    <tr><th class="col-1"><b>{name}</b></th><th>Landings</th><th>Revenues</th></tr>
+  </thead>
+  <tbody>
+    <tr><th class="col-1"><b>Total</b></td><td></td><td></td></tr>
 
-    <tr><td rowspan=2><b>Species</b></td></tr>
+    <tr><th rowspan=2 class="col-1"><b>Species</b></td></tr>
     <tr><td>Red Snapper</td><td></td><td></td></tr>
     <tr><td>Mid-depth snappers</td><td></td></tr>
     <tr><td>Shallow-water snappers</td><td></td></tr>
@@ -23,16 +26,17 @@ output = """
     <tr><td>Grunts and porgies</td><td></td></tr>
     <tr><td>Coastal pelagic</td><td></td></tr>
 
-    <tr><td rowspan=2><b>Time period</b></td></tr>
+    <tr><th rowspan=2 class="col-1"><b>Time period</b></td></tr>
     <tr><td>2007-2014</td><td></td></tr>
     <tr><td>2015-2021</td><td></td></tr>
 
-    <tr><td rowspan=2><b>State</b></td></tr>
+    <tr><th rowspan=2 class="col-1"><b>State</b></td></tr>
     <tr><td>Florida</td><td></td></tr>
     <tr><td>Alabama</td><td></td></tr>
     <tr><td>Mississippi</td><td></td></tr>
     <tr><td>Louisiana</td><td></td></tr>
     <tr><td>Texas</td><td></td></tr>
+  </tbody>
 </table>
 """
 
@@ -114,6 +118,7 @@ class FisheriesReportProcessor(BaseProcessor):
 
         value = f'Feature: {feature}'
 
+        # FIXME: client has to parse as json to extract the text for the Report value
         outputs = {
             # 'Report': value
             'Report': output.format(name="e.g. Point")  # FIXME
