@@ -1,6 +1,6 @@
 # coding: utf-8
 from sqlalchemy import ARRAY, Boolean, CheckConstraint, Column, Date, Float, Integer, Numeric, String, Table, Text, text
-from geoalchemy2.types import Geometry
+from geoalchemy2.types import Geometry, Raster
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -289,6 +289,326 @@ class ReeffishTerritoriesLocoh(Base):
     id = Column(Numeric(5, 0))
     county = Column(String(15))
     wkb_geometry = Column(Geometry('MULTIPOLYGON', from_text='ST_GeomFromEWKT', name='geometry'), index=True)
+
+
+class Rf10LandESpecy(Base):
+    __tablename__ = 'rf10_land_e_species'
+    __table_args__ = (
+        CheckConstraint("_raster_constraint_nodata_values(rast) = '{-339999995214436000000000000000000000000.0000000000}'::numeric[]"),
+        CheckConstraint("_raster_constraint_out_db(rast) = '{f}'::boolean[]"),
+        CheckConstraint("_raster_constraint_pixel_types(rast) = '{32BF}'::text[]"),
+        CheckConstraint('round((st_scalex(rast))::numeric, 10) = round((10000)::numeric, 10)'),
+        CheckConstraint('round((st_scaley(rast))::numeric, 10) = round((- (10000)::numeric), 10)'),
+        CheckConstraint("st_envelope(rast) @ '01030000200B0C000001000000050000000000000020293B4100000000245E59410000000020293B4100000000646B5C410000000068A04A4100000000646B5C410000000068A04A4100000000245E59410000000020293B4100000000245E5941'::geometry"),
+        CheckConstraint('st_height(rast) = 80'),
+        CheckConstraint('st_numbands(rast) = 1'),
+        CheckConstraint("st_samealignment(rast, '0100000000000000000088C340000000000088C3C00000000020293B4100000000646B5C41000000000000000000000000000000000B0C000001000100'::raster)"),
+        CheckConstraint('st_srid(rast) = 3083'),
+        CheckConstraint('st_width(rast) = 171')
+    )
+
+    rid = Column(Integer, primary_key=True, server_default=text("nextval('rf10_land_e_species_rid_seq'::regclass)"))
+    rast = Column(Raster(from_text='raster', name='raster'), index=True)
+
+
+class Rf10LandSAl(Base):
+    __tablename__ = 'rf10_land_s_al'
+    __table_args__ = (
+        CheckConstraint("_raster_constraint_nodata_values(rast) = '{-339999995214436000000000000000000000000.0000000000}'::numeric[]"),
+        CheckConstraint("_raster_constraint_out_db(rast) = '{f}'::boolean[]"),
+        CheckConstraint("_raster_constraint_pixel_types(rast) = '{32BF}'::text[]"),
+        CheckConstraint('round((st_scalex(rast))::numeric, 10) = round((10000)::numeric, 10)'),
+        CheckConstraint('round((st_scaley(rast))::numeric, 10) = round((- (10000)::numeric), 10)'),
+        CheckConstraint("st_envelope(rast) @ '01030000200B0C0000010000000500000000000000A0613C4100000000EC0D5A4100000000A0613C4100000000184E5C410000000020B8484100000000184E5C410000000020B8484100000000EC0D5A4100000000A0613C4100000000EC0D5A41'::geometry"),
+        CheckConstraint('st_height(rast) = 59'),
+        CheckConstraint('st_numbands(rast) = 1'),
+        CheckConstraint("st_samealignment(rast, '0100000000000000000088C340000000000088C3C000000000A0613C4100000000184E5C41000000000000000000000000000000000B0C000001000100'::raster)"),
+        CheckConstraint('st_srid(rast) = 3083'),
+        CheckConstraint('st_width(rast) = 138')
+    )
+
+    rid = Column(Integer, primary_key=True, server_default=text("nextval('rf10_land_s_al_rid_seq'::regclass)"))
+    rast = Column(Raster(from_text='raster', name='raster'), index=True)
+
+
+class Rf10LandSFl(Base):
+    __tablename__ = 'rf10_land_s_fl'
+    __table_args__ = (
+        CheckConstraint("_raster_constraint_nodata_values(rast) = '{-339999995214436000000000000000000000000.0000000000}'::numeric[]"),
+        CheckConstraint("_raster_constraint_out_db(rast) = '{f}'::boolean[]"),
+        CheckConstraint("_raster_constraint_pixel_types(rast) = '{32BF}'::text[]"),
+        CheckConstraint('round((st_scalex(rast))::numeric, 10) = round((10000)::numeric, 10)'),
+        CheckConstraint('round((st_scaley(rast))::numeric, 10) = round((- (10000)::numeric), 10)'),
+        CheckConstraint("st_envelope(rast) @ '01030000200B0C0000010000000500000000000000A0613C4100000000245E594100000000A0613C4100000000646B5C410000000068A04A4100000000646B5C410000000068A04A4100000000245E594100000000A0613C4100000000245E5941'::geometry"),
+        CheckConstraint('st_height(rast) = 80'),
+        CheckConstraint('st_numbands(rast) = 1'),
+        CheckConstraint("st_samealignment(rast, '0100000000000000000088C340000000000088C3C000000000A0613C4100000000646B5C41000000000000000000000000000000000B0C000001000100'::raster)"),
+        CheckConstraint('st_srid(rast) = 3083'),
+        CheckConstraint('st_width(rast) = 163')
+    )
+
+    rid = Column(Integer, primary_key=True, server_default=text("nextval('rf10_land_s_fl_rid_seq'::regclass)"))
+    rast = Column(Raster(from_text='raster', name='raster'), index=True)
+
+
+class Rf10LandSLa(Base):
+    __tablename__ = 'rf10_land_s_la'
+    __table_args__ = (
+        CheckConstraint("_raster_constraint_nodata_values(rast) = '{-339999995214436000000000000000000000000.0000000000}'::numeric[]"),
+        CheckConstraint("_raster_constraint_out_db(rast) = '{f}'::boolean[]"),
+        CheckConstraint("_raster_constraint_pixel_types(rast) = '{32BF}'::text[]"),
+        CheckConstraint('round((st_scalex(rast))::numeric, 10) = round((10000)::numeric, 10)'),
+        CheckConstraint('round((st_scaley(rast))::numeric, 10) = round((- (10000)::numeric), 10)'),
+        CheckConstraint("st_envelope(rast) @ '01030000200B0C000001000000050000000000000080133C410000000084485A410000000080133C4100000000184E5C4100000000D840494100000000184E5C4100000000D84049410000000084485A410000000080133C410000000084485A41'::geometry"),
+        CheckConstraint('st_height(rast) = 53'),
+        CheckConstraint('st_numbands(rast) = 1'),
+        CheckConstraint("st_samealignment(rast, '0100000000000000000088C340000000000088C3C00000000080133C4100000000184E5C41000000000000000000000000000000000B0C000001000100'::raster)"),
+        CheckConstraint('st_srid(rast) = 3083'),
+        CheckConstraint('st_width(rast) = 147')
+    )
+
+    rid = Column(Integer, primary_key=True, server_default=text("nextval('rf10_land_s_la_rid_seq'::regclass)"))
+    rast = Column(Raster(from_text='raster', name='raster'), index=True)
+
+
+class Rf10LandSM(Base):
+    __tablename__ = 'rf10_land_s_ms'
+    __table_args__ = (
+        CheckConstraint("_raster_constraint_nodata_values(rast) = '{-339999995214436000000000000000000000000.0000000000}'::numeric[]"),
+        CheckConstraint("_raster_constraint_out_db(rast) = '{f}'::boolean[]"),
+        CheckConstraint("_raster_constraint_pixel_types(rast) = '{32BF}'::text[]"),
+        CheckConstraint('round((st_scalex(rast))::numeric, 10) = round((10000)::numeric, 10)'),
+        CheckConstraint('round((st_scaley(rast))::numeric, 10) = round((- (10000)::numeric), 10)'),
+        CheckConstraint("st_envelope(rast) @ '01030000200B0C0000010000000500000000000000889B4341000000009CBB5B4100000000889B434100000000184E5C410000000008D4444100000000184E5C410000000008D44441000000009CBB5B4100000000889B4341000000009CBB5B41'::geometry"),
+        CheckConstraint('st_height(rast) = 15'),
+        CheckConstraint('st_numbands(rast) = 1'),
+        CheckConstraint("st_samealignment(rast, '0100000000000000000088C340000000000088C3C000000000889B434100000000184E5C41000000000000000000000000000000000B0C000001000100'::raster)"),
+        CheckConstraint('st_srid(rast) = 3083'),
+        CheckConstraint('st_width(rast) = 16')
+    )
+
+    rid = Column(Integer, primary_key=True, server_default=text("nextval('rf10_land_s_ms_rid_seq'::regclass)"))
+    rast = Column(Raster(from_text='raster', name='raster'), index=True)
+
+
+class Rf10LandSTx(Base):
+    __tablename__ = 'rf10_land_s_tx'
+    __table_args__ = (
+        CheckConstraint("_raster_constraint_nodata_values(rast) = '{-339999995214436000000000000000000000000.0000000000}'::numeric[]"),
+        CheckConstraint("_raster_constraint_out_db(rast) = '{f}'::boolean[]"),
+        CheckConstraint("_raster_constraint_pixel_types(rast) = '{32BF}'::text[]"),
+        CheckConstraint('round((st_scalex(rast))::numeric, 10) = round((10000)::numeric, 10)'),
+        CheckConstraint('round((st_scaley(rast))::numeric, 10) = round((- (10000)::numeric), 10)'),
+        CheckConstraint("st_envelope(rast) @ '01030000200B0C000001000000050000000000000020293B4100000000C03E5A410000000020293B4100000000903A5C4100000000B035454100000000903A5C4100000000B035454100000000C03E5A410000000020293B4100000000C03E5A41'::geometry"),
+        CheckConstraint('st_height(rast) = 52'),
+        CheckConstraint('st_numbands(rast) = 1'),
+        CheckConstraint("st_samealignment(rast, '0100000000000000000088C340000000000088C3C00000000020293B4100000000903A5C41000000000000000000000000000000000B0C000001000100'::raster)"),
+        CheckConstraint('st_srid(rast) = 3083'),
+        CheckConstraint('st_width(rast) = 100')
+    )
+
+    rid = Column(Integer, primary_key=True, server_default=text("nextval('rf10_land_s_tx_rid_seq'::regclass)"))
+    rast = Column(Raster(from_text='raster', name='raster'), index=True)
+
+
+class Rf10LandT20072014(Base):
+    __tablename__ = 'rf10_land_t_2007_2014'
+    __table_args__ = (
+        CheckConstraint("_raster_constraint_nodata_values(rast) = '{-339999995214436000000000000000000000000.0000000000}'::numeric[]"),
+        CheckConstraint("_raster_constraint_out_db(rast) = '{f}'::boolean[]"),
+        CheckConstraint("_raster_constraint_pixel_types(rast) = '{32BF}'::text[]"),
+        CheckConstraint('round((st_scalex(rast))::numeric, 10) = round((10000)::numeric, 10)'),
+        CheckConstraint('round((st_scaley(rast))::numeric, 10) = round((- (10000)::numeric), 10)'),
+        CheckConstraint("st_envelope(rast) @ '01030000200B0C000001000000050000000000000020293B4100000000245E59410000000020293B4100000000646B5C410000000068A04A4100000000646B5C410000000068A04A4100000000245E59410000000020293B4100000000245E5941'::geometry"),
+        CheckConstraint('st_height(rast) = 80'),
+        CheckConstraint('st_numbands(rast) = 1'),
+        CheckConstraint("st_samealignment(rast, '0100000000000000000088C340000000000088C3C00000000020293B4100000000646B5C41000000000000000000000000000000000B0C000001000100'::raster)"),
+        CheckConstraint('st_srid(rast) = 3083'),
+        CheckConstraint('st_width(rast) = 171')
+    )
+
+    rid = Column(Integer, primary_key=True, server_default=text("nextval('rf10_land_t_2007_2014_rid_seq'::regclass)"))
+    rast = Column(Raster(from_text='raster', name='raster'), index=True)
+
+
+class Rf10LandT20152021(Base):
+    __tablename__ = 'rf10_land_t_2015_2021'
+    __table_args__ = (
+        CheckConstraint("_raster_constraint_nodata_values(rast) = '{-339999995214436000000000000000000000000.0000000000}'::numeric[]"),
+        CheckConstraint("_raster_constraint_out_db(rast) = '{f}'::boolean[]"),
+        CheckConstraint("_raster_constraint_pixel_types(rast) = '{32BF}'::text[]"),
+        CheckConstraint('round((st_scalex(rast))::numeric, 10) = round((10000)::numeric, 10)'),
+        CheckConstraint('round((st_scaley(rast))::numeric, 10) = round((- (10000)::numeric), 10)'),
+        CheckConstraint("st_envelope(rast) @ '01030000200B0C000001000000050000000000000030503B410000000064FA59410000000030503B4100000000646B5C410000000058794A4100000000646B5C410000000058794A410000000064FA59410000000030503B410000000064FA5941'::geometry"),
+        CheckConstraint('st_height(rast) = 64'),
+        CheckConstraint('st_numbands(rast) = 1'),
+        CheckConstraint("st_samealignment(rast, '0100000000000000000088C340000000000088C3C00000000030503B4100000000646B5C41000000000000000000000000000000000B0C000001000100'::raster)"),
+        CheckConstraint('st_srid(rast) = 3083'),
+        CheckConstraint('st_width(rast) = 168')
+    )
+
+    rid = Column(Integer, primary_key=True, server_default=text("nextval('rf10_land_t_2015_2021_rid_seq'::regclass)"))
+    rast = Column(Raster(from_text='raster', name='raster'), index=True)
+
+
+class Rf10RevESpecy(Base):
+    __tablename__ = 'rf10_rev_e_species'
+    __table_args__ = (
+        CheckConstraint("_raster_constraint_nodata_values(rast) = '{-339999995214436000000000000000000000000.0000000000}'::numeric[]"),
+        CheckConstraint("_raster_constraint_out_db(rast) = '{f}'::boolean[]"),
+        CheckConstraint("_raster_constraint_pixel_types(rast) = '{32BF}'::text[]"),
+        CheckConstraint('round((st_scalex(rast))::numeric, 10) = round((10000)::numeric, 10)'),
+        CheckConstraint('round((st_scaley(rast))::numeric, 10) = round((- (10000)::numeric), 10)'),
+        CheckConstraint("st_envelope(rast) @ '01030000200B0C000001000000050000000000000020293B4100000000245E59410000000020293B4100000000646B5C410000000068A04A4100000000646B5C410000000068A04A4100000000245E59410000000020293B4100000000245E5941'::geometry"),
+        CheckConstraint('st_height(rast) = 80'),
+        CheckConstraint('st_numbands(rast) = 1'),
+        CheckConstraint("st_samealignment(rast, '0100000000000000000088C340000000000088C3C00000000020293B4100000000646B5C41000000000000000000000000000000000B0C000001000100'::raster)"),
+        CheckConstraint('st_srid(rast) = 3083'),
+        CheckConstraint('st_width(rast) = 171')
+    )
+
+    rid = Column(Integer, primary_key=True, server_default=text("nextval('rf10_rev_e_species_rid_seq'::regclass)"))
+    rast = Column(Raster(from_text='raster', name='raster'), index=True)
+
+
+class Rf10RevSAl(Base):
+    __tablename__ = 'rf10_rev_s_al'
+    __table_args__ = (
+        CheckConstraint("_raster_constraint_nodata_values(rast) = '{-339999995214436000000000000000000000000.0000000000}'::numeric[]"),
+        CheckConstraint("_raster_constraint_out_db(rast) = '{f}'::boolean[]"),
+        CheckConstraint("_raster_constraint_pixel_types(rast) = '{32BF}'::text[]"),
+        CheckConstraint('round((st_scalex(rast))::numeric, 10) = round((10000)::numeric, 10)'),
+        CheckConstraint('round((st_scaley(rast))::numeric, 10) = round((- (10000)::numeric), 10)'),
+        CheckConstraint("st_envelope(rast) @ '01030000200B0C0000010000000500000000000000A0613C4100000000EC0D5A4100000000A0613C4100000000184E5C410000000020B8484100000000184E5C410000000020B8484100000000EC0D5A4100000000A0613C4100000000EC0D5A41'::geometry"),
+        CheckConstraint('st_height(rast) = 59'),
+        CheckConstraint('st_numbands(rast) = 1'),
+        CheckConstraint("st_samealignment(rast, '0100000000000000000088C340000000000088C3C000000000A0613C4100000000184E5C41000000000000000000000000000000000B0C000001000100'::raster)"),
+        CheckConstraint('st_srid(rast) = 3083'),
+        CheckConstraint('st_width(rast) = 138')
+    )
+
+    rid = Column(Integer, primary_key=True, server_default=text("nextval('rf10_rev_s_al_rid_seq'::regclass)"))
+    rast = Column(Raster(from_text='raster', name='raster'), index=True)
+
+
+class Rf10RevSFl(Base):
+    __tablename__ = 'rf10_rev_s_fl'
+    __table_args__ = (
+        CheckConstraint("_raster_constraint_nodata_values(rast) = '{-339999995214436000000000000000000000000.0000000000}'::numeric[]"),
+        CheckConstraint("_raster_constraint_out_db(rast) = '{f}'::boolean[]"),
+        CheckConstraint("_raster_constraint_pixel_types(rast) = '{32BF}'::text[]"),
+        CheckConstraint('round((st_scalex(rast))::numeric, 10) = round((10000)::numeric, 10)'),
+        CheckConstraint('round((st_scaley(rast))::numeric, 10) = round((- (10000)::numeric), 10)'),
+        CheckConstraint("st_envelope(rast) @ '01030000200B0C0000010000000500000000000000A0613C4100000000245E594100000000A0613C4100000000646B5C410000000068A04A4100000000646B5C410000000068A04A4100000000245E594100000000A0613C4100000000245E5941'::geometry"),
+        CheckConstraint('st_height(rast) = 80'),
+        CheckConstraint('st_numbands(rast) = 1'),
+        CheckConstraint("st_samealignment(rast, '0100000000000000000088C340000000000088C3C000000000A0613C4100000000646B5C41000000000000000000000000000000000B0C000001000100'::raster)"),
+        CheckConstraint('st_srid(rast) = 3083'),
+        CheckConstraint('st_width(rast) = 163')
+    )
+
+    rid = Column(Integer, primary_key=True, server_default=text("nextval('rf10_rev_s_fl_rid_seq'::regclass)"))
+    rast = Column(Raster(from_text='raster', name='raster'), index=True)
+
+
+class Rf10RevSLa(Base):
+    __tablename__ = 'rf10_rev_s_la'
+    __table_args__ = (
+        CheckConstraint("_raster_constraint_nodata_values(rast) = '{-339999995214436000000000000000000000000.0000000000}'::numeric[]"),
+        CheckConstraint("_raster_constraint_out_db(rast) = '{f}'::boolean[]"),
+        CheckConstraint("_raster_constraint_pixel_types(rast) = '{32BF}'::text[]"),
+        CheckConstraint('round((st_scalex(rast))::numeric, 10) = round((10000)::numeric, 10)'),
+        CheckConstraint('round((st_scaley(rast))::numeric, 10) = round((- (10000)::numeric), 10)'),
+        CheckConstraint("st_envelope(rast) @ '01030000200B0C000001000000050000000000000080133C410000000084485A410000000080133C4100000000184E5C4100000000D840494100000000184E5C4100000000D84049410000000084485A410000000080133C410000000084485A41'::geometry"),
+        CheckConstraint('st_height(rast) = 53'),
+        CheckConstraint('st_numbands(rast) = 1'),
+        CheckConstraint("st_samealignment(rast, '0100000000000000000088C340000000000088C3C00000000080133C4100000000184E5C41000000000000000000000000000000000B0C000001000100'::raster)"),
+        CheckConstraint('st_srid(rast) = 3083'),
+        CheckConstraint('st_width(rast) = 147')
+    )
+
+    rid = Column(Integer, primary_key=True, server_default=text("nextval('rf10_rev_s_la_rid_seq'::regclass)"))
+    rast = Column(Raster(from_text='raster', name='raster'), index=True)
+
+
+class Rf10RevSM(Base):
+    __tablename__ = 'rf10_rev_s_ms'
+    __table_args__ = (
+        CheckConstraint("_raster_constraint_nodata_values(rast) = '{-339999995214436000000000000000000000000.0000000000}'::numeric[]"),
+        CheckConstraint("_raster_constraint_out_db(rast) = '{f}'::boolean[]"),
+        CheckConstraint("_raster_constraint_pixel_types(rast) = '{32BF}'::text[]"),
+        CheckConstraint('round((st_scalex(rast))::numeric, 10) = round((10000)::numeric, 10)'),
+        CheckConstraint('round((st_scaley(rast))::numeric, 10) = round((- (10000)::numeric), 10)'),
+        CheckConstraint("st_envelope(rast) @ '01030000200B0C0000010000000500000000000000889B4341000000009CBB5B4100000000889B434100000000184E5C410000000008D4444100000000184E5C410000000008D44441000000009CBB5B4100000000889B4341000000009CBB5B41'::geometry"),
+        CheckConstraint('st_height(rast) = 15'),
+        CheckConstraint('st_numbands(rast) = 1'),
+        CheckConstraint("st_samealignment(rast, '0100000000000000000088C340000000000088C3C000000000889B434100000000184E5C41000000000000000000000000000000000B0C000001000100'::raster)"),
+        CheckConstraint('st_srid(rast) = 3083'),
+        CheckConstraint('st_width(rast) = 16')
+    )
+
+    rid = Column(Integer, primary_key=True, server_default=text("nextval('rf10_rev_s_ms_rid_seq'::regclass)"))
+    rast = Column(Raster(from_text='raster', name='raster'), index=True)
+
+
+class Rf10RevSTx(Base):
+    __tablename__ = 'rf10_rev_s_tx'
+    __table_args__ = (
+        CheckConstraint("_raster_constraint_nodata_values(rast) = '{-339999995214436000000000000000000000000.0000000000}'::numeric[]"),
+        CheckConstraint("_raster_constraint_out_db(rast) = '{f}'::boolean[]"),
+        CheckConstraint("_raster_constraint_pixel_types(rast) = '{32BF}'::text[]"),
+        CheckConstraint('round((st_scalex(rast))::numeric, 10) = round((10000)::numeric, 10)'),
+        CheckConstraint('round((st_scaley(rast))::numeric, 10) = round((- (10000)::numeric), 10)'),
+        CheckConstraint("st_envelope(rast) @ '01030000200B0C000001000000050000000000000020293B4100000000C03E5A410000000020293B4100000000903A5C4100000000B035454100000000903A5C4100000000B035454100000000C03E5A410000000020293B4100000000C03E5A41'::geometry"),
+        CheckConstraint('st_height(rast) = 52'),
+        CheckConstraint('st_numbands(rast) = 1'),
+        CheckConstraint("st_samealignment(rast, '0100000000000000000088C340000000000088C3C00000000020293B4100000000903A5C41000000000000000000000000000000000B0C000001000100'::raster)"),
+        CheckConstraint('st_srid(rast) = 3083'),
+        CheckConstraint('st_width(rast) = 100')
+    )
+
+    rid = Column(Integer, primary_key=True, server_default=text("nextval('rf10_rev_s_tx_rid_seq'::regclass)"))
+    rast = Column(Raster(from_text='raster', name='raster'), index=True)
+
+
+class Rf10RevT20072014(Base):
+    __tablename__ = 'rf10_rev_t_2007_2014'
+    __table_args__ = (
+        CheckConstraint("_raster_constraint_nodata_values(rast) = '{-339999995214436000000000000000000000000.0000000000}'::numeric[]"),
+        CheckConstraint("_raster_constraint_out_db(rast) = '{f}'::boolean[]"),
+        CheckConstraint("_raster_constraint_pixel_types(rast) = '{32BF}'::text[]"),
+        CheckConstraint('round((st_scalex(rast))::numeric, 10) = round((10000)::numeric, 10)'),
+        CheckConstraint('round((st_scaley(rast))::numeric, 10) = round((- (10000)::numeric), 10)'),
+        CheckConstraint("st_envelope(rast) @ '01030000200B0C000001000000050000000000000020293B4100000000245E59410000000020293B4100000000646B5C410000000068A04A4100000000646B5C410000000068A04A4100000000245E59410000000020293B4100000000245E5941'::geometry"),
+        CheckConstraint('st_height(rast) = 80'),
+        CheckConstraint('st_numbands(rast) = 1'),
+        CheckConstraint("st_samealignment(rast, '0100000000000000000088C340000000000088C3C00000000020293B4100000000646B5C41000000000000000000000000000000000B0C000001000100'::raster)"),
+        CheckConstraint('st_srid(rast) = 3083'),
+        CheckConstraint('st_width(rast) = 171')
+    )
+
+    rid = Column(Integer, primary_key=True, server_default=text("nextval('rf10_rev_t_2007_2014_rid_seq'::regclass)"))
+    rast = Column(Raster(from_text='raster', name='raster'), index=True)
+
+
+class Rf10RevT20152021(Base):
+    __tablename__ = 'rf10_rev_t_2015_2021'
+    __table_args__ = (
+        CheckConstraint("_raster_constraint_nodata_values(rast) = '{-339999995214436000000000000000000000000.0000000000}'::numeric[]"),
+        CheckConstraint("_raster_constraint_out_db(rast) = '{f}'::boolean[]"),
+        CheckConstraint("_raster_constraint_pixel_types(rast) = '{32BF}'::text[]"),
+        CheckConstraint('round((st_scalex(rast))::numeric, 10) = round((10000)::numeric, 10)'),
+        CheckConstraint('round((st_scaley(rast))::numeric, 10) = round((- (10000)::numeric), 10)'),
+        CheckConstraint("st_envelope(rast) @ '01030000200B0C000001000000050000000000000030503B410000000064FA59410000000030503B4100000000646B5C410000000058794A4100000000646B5C410000000058794A410000000064FA59410000000030503B410000000064FA5941'::geometry"),
+        CheckConstraint('st_height(rast) = 64'),
+        CheckConstraint('st_numbands(rast) = 1'),
+        CheckConstraint("st_samealignment(rast, '0100000000000000000088C340000000000088C3C00000000030503B4100000000646B5C41000000000000000000000000000000000B0C000001000100'::raster)"),
+        CheckConstraint('st_srid(rast) = 3083'),
+        CheckConstraint('st_width(rast) = 168')
+    )
+
+    rid = Column(Integer, primary_key=True, server_default=text("nextval('rf10_rev_t_2015_2021_rid_seq'::regclass)"))
+    rast = Column(Raster(from_text='raster', name='raster'), index=True)
 
 
 class Rfbsg(Base):
