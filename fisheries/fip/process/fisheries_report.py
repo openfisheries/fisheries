@@ -8,7 +8,7 @@ from pygeoapi.process.base import BaseProcessor, ProcessorExecuteError
 
 
 output = """
-<h2 class="text-center">Fisheries Report</h2>
+<h2 class="text-center">Reef Fish Landings and Revenues (2007-2021)</h2>
 <br/>
 <table class="table fip-table">
   <thead>
@@ -48,13 +48,15 @@ output = """
   <a href="" style="color: grey; pointer-events: none; cursor: default;">PDF</a>
 </span>
 
+<!-- {comments} -->
+
 """
 
 
 OrderedDict([
     ('Red Snapper', ['RF10_land_e_RS', 'RF10_rev_e_RS']),
     ('Mid-depth snappers', ['RF10_land_e_MS.R', 'RF10_rev_e_MS']),
-    ('[Shallow-water snappers]', ['RF10_land_e_SS', 'RF10_rev_e_SS']),
+    ('Shallow-water snappers', ['RF10_land_e_SS', 'RF10_rev_e_SS']),
     ('Shallow-water groupers', ['RF10_land_e_SG', 'RF10_rev_e_SG']),
     ('Deep-water groupers', ['RF10_land_e_DG', 'RF10_rev_e_DG']),
     ('Tilefishes', ['RF10_land_e_TF', 'RF10_rev_e_TF']),
@@ -152,7 +154,10 @@ class FisheriesReportProcessor(BaseProcessor):
         # FIXME: client has to parse as json to extract the text for the Report value
         outputs = {
             # 'Report': value
-            'Report': output.format(name="e.g. Point")  # FIXME
+            'Report': output.format(
+                name="",
+                comments=value,
+            )
         }
 
         return mimetype, outputs
