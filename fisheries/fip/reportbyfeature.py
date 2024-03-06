@@ -9,9 +9,7 @@ from fisheries.fip.models import CountiesEdited
 from fisheries.fip.db import Session
 
 
-
-"""
-def select_county(geojson): 
+def report_by_feature(geojson):
     if isinstance(geojson, str):
         geojson = json.loads(geojson)
 
@@ -45,4 +43,3 @@ def select_county(geojson):
 
         else:
             raise ValueError("Invalid GeoJSON type. Must be 'Point' or 'Polygon'.")
-"""
