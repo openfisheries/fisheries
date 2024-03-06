@@ -1,12 +1,15 @@
 """
 FIXME: Accept point or polygon as GeoJSON
 """
+from collections import OrderedDict
 import logging
 
 from pygeoapi.process.base import BaseProcessor, ProcessorExecuteError
 
 
 output = """
+<h2 class="text-center">Fisheries Report</h2>
+<br/>
 <table class="table fip-table">
   <thead>
     <tr><th class="col-1"><b>{name}</b></th><th>Landings</th><th>Revenues</th></tr>
@@ -38,7 +41,35 @@ output = """
     <tr><td>Texas</td><td></td><td></td></tr>
   </tbody>
 </table>
+
+<br/>
+<span class="text-center">Download: 
+  <a href="" style="color: grey; pointer-events: none; cursor: default;">CSV</a>, 
+  <a href="" style="color: grey; pointer-events: none; cursor: default;">PDF</a>
+</span>
+
 """
+
+
+OrderedDict([
+    ('Red Snapper', ['RF10_land_e_RS', 'RF10_rev_e_RS']),
+    ('Mid-depth snappers', ['RF10_land_e_MS.R', 'RF10_rev_e_MS']),
+    ('[Shallow-water snappers]', ['RF10_land_e_SS', 'RF10_rev_e_SS']),
+    ('Shallow-water groupers', ['RF10_land_e_SG', 'RF10_rev_e_SG']),
+    ('Deep-water groupers', ['RF10_land_e_DG', 'RF10_rev_e_DG']),
+    ('Tilefishes', ['RF10_land_e_TF', 'RF10_rev_e_TF']),
+    ('Jacks', ['RF10_land_e_JA', 'RF10_rev_e_JA']),
+    ('Triggerfishes', ['RF10_land_e_TR', 'RF10_rev_e_TR']),
+    ('Grunts and porgies', ['RF10_land_e_GP', 'RF10_rev_e_GP']),
+    ('Coastal pelagic', ['RF10_land_e_CP', 'RF10_rev_e_CP']),
+    ('2007-2014', ['RF10_land_t_2007_2014', 'RF10_rev_t_2007_2014']),
+    ('2015-2021', ['RF10_land_t_2015_2021', 'RF10_rev_t_2015_2021']),
+    ('Florida', ['RF10_land_s_FL', 'RF10_rev_s_FL']),
+    ('Alabama', ['RF10_land_s_AL', 'RF10_rev_s_AL']),
+    ('Mississippi', ['RF10_land_s_MS', 'RF10_rev_s_MS']),
+    ('Louisiana', ['RF10_land_s_LA', 'RF10_rev_s_LA']),
+    ('Texas', ['RF10_land_s_TX', 'RF10_rev_s_TX'])
+])
 
 
 LOGGER = logging.getLogger(__name__)
