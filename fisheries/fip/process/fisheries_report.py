@@ -6,6 +6,8 @@ import logging
 
 from pygeoapi.process.base import BaseProcessor, ProcessorExecuteError
 
+from ..reportbyfeature import report_by_feature
+
 
 output = """
 <h2 class="text-center">Reef Fish Landings and Revenues (2007-2021)</h2>
@@ -188,6 +190,9 @@ class FisheriesReportProcessor(BaseProcessor):
             raise ProcessorExecuteError('Cannot process without GeoJSON feature input data')
 
         value = f'Feature: {feature}'
+
+        for k in values:
+            values[k] = report_by_feature(feature, k)
 
         # FIXME: client has to parse as json to extract the text for the Report value
         outputs = {
