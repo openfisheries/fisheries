@@ -9,6 +9,9 @@ from pygeoapi.process.base import BaseProcessor, ProcessorExecuteError
 from ..reportbyfeature import report_by_feature
 
 
+LOGGER = logging.getLogger(__name__)
+
+
 output = """
 <h2 class="text-center">Reef Fish Landings and Revenues (2007-2021)</h2>
 <br/>
@@ -17,7 +20,7 @@ output = """
     <tr><th class="col-1"><b>{name}</b></th><th>Landings</th><th>Revenues</th></tr>
   </thead>
   <tbody>
-    <tr><th class="col-1"><b>Total</b></td><td></td><td></td></tr>
+    <tr><th class="col-1"><b>Total</b></td><td>{tot_land}</td><td>{tot_rev}</td></tr>
 
     <tr><th colspan=3 class="col-1"><b>Species</b></td></tr>
     <tr><td>Red Snapper</td><td>{RF10_land_e_RS}</td><td>{RF10_rev_e_RS}</td></tr>
@@ -97,7 +100,6 @@ values = {
     'RF10_rev_e_GP': "",
     'RF10_land_e_CP': "",
     'RF10_rev_e_CP': "",
-    '2007-2014': "",
     'RF10_land_t_2007_2014': "",
     'RF10_rev_t_2007_2014': "",
     'RF10_land_t_2015_2021': "",
@@ -114,7 +116,25 @@ values = {
     'RF10_rev_s_TX': "-",
 }
 
-LOGGER = logging.getLogger(__name__)
+
+# species_landings = [v for v in values if 'land_e' in v]
+# species_revenues = [v for v in values if 'rev_e' in v]
+# LOGGER.debug(species_landings)
+# LOGGER.debug(species_revenues)
+species_landings = ['RF10_land_e_RS', 'RF10_land_e_MS', 'RF10_land_e_SS', 'RF10_land_e_SG', 'RF10_land_e_DG', 'RF10_land_e_TF', 'RF10_land_e_JA', 'RF10_land_e_TR', 'RF10_land_e_GP', 'RF10_land_e_CP']
+species_revenues = ['RF10_rev_e_RS', 'RF10_rev_e_MS', 'RF10_rev_e_SS', 'RF10_rev_e_SG', 'RF10_rev_e_DG', 'RF10_rev_e_TF', 'RF10_rev_e_JA', 'RF10_rev_e_TR', 'RF10_rev_e_GP', 'RF10_rev_e_CP']
+
+
+
+def calc_totals(values, total_type):
+    lookup = species_landings if total_type=='land' else species_revenues
+
+    total = None
+    for k, v in values.items():
+        if k in lookup:
+            if v is not None:
+                total = total + v if total is not None else v
+    return f'{int(total):,}' if total is not None else '-'
 
 
 # Process metadata and description
@@ -188,23 +208,28 @@ class FisheriesReportProcessor(BaseProcessor):
 
         if feature is None:
             raise ProcessorExecuteError('Cannot process without GeoJSON feature input data')
-
-        value = f'Feature: {feature}'
+        comment = f'Feature: {feature}'
+        report_values = {}
 
         for k in values:
             values[k] = report_by_feature(feature, k)
+            report_values[k] = '-' if values[k] is None else f"{int(values[k]):,}"
 
         # FIXME: client has to parse as json to extract the text for the Report value
         outputs = {
             # 'Report': value
             'Report': output.format(
                 name="",
-                comments=value,
-                **values,
+                comments=comment,
+                tot_land=calc_totals(values, total_type='land'),
+                tot_rev=calc_totals(values, total_type='rev'),
+                **report_values,
             )
         }
 
         return mimetype, outputs
 
+
     def __repr__(self):
         return f'<FisheriesReportProcessor> {self.name}'
+
