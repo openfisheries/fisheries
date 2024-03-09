@@ -1,6 +1,3 @@
-"""
-FIXME: Accept point or polygon as GeoJSON
-"""
 from collections import OrderedDict
 import logging
 
@@ -17,14 +14,17 @@ output = """
 <br/>
 <table class="table fip-table">
   <thead>
-    <tr><th class="col-1"><b>{name}</b></th><th>Landings</th><th>Revenues</th></tr>
+    <tr><th class="col-1"><b>{name}</b></th><th><b>Landings</b></th><th><b>Revenues</b></th></tr>
   </thead>
   <tbody>
     <tr><th class="col-1"><b>Total</b></td><td>{tot_land}</td><td>{tot_rev}</td></tr>
 
     <tr><th colspan=3 class="col-1"><b>Species</b></td></tr>
-    <tr><td>Red Snapper</td><td>{RF10_land_e_RS}</td><td>{RF10_rev_e_RS}</td></tr>
-    <tr><td>Mid-depth snappers</td><td>{RF10_land_e_MS}</td><td>{RF10_rev_e_MS}</td></tr>
+    <tr>
+        <td>Mid-depth snappers<br/> &nbsp; (of which Red Snapper)</td>
+        <td>{RF10_land_e_MS}<br/>({RF10_land_e_RS})</td>
+        <td>{RF10_rev_e_MS}<br/>({RF10_rev_e_RS})</td>
+    </tr>
     <tr><td>Shallow-water snappers</td><td>{RF10_land_e_SS}</td><td>{RF10_rev_e_SS}</td></tr>
     <tr><td>Shallow-water groupers</td><td>{RF10_land_e_SG}</td><td>{RF10_rev_e_SG}</td></tr>
     <tr><td>Deep-water groupers</td><td>{RF10_land_e_DG}</td><td>{RF10_rev_e_DG}</td></tr>
@@ -121,20 +121,47 @@ values = {
 # species_revenues = [v for v in values if 'rev_e' in v]
 # LOGGER.debug(species_landings)
 # LOGGER.debug(species_revenues)
-species_landings = ['RF10_land_e_RS', 'RF10_land_e_MS', 'RF10_land_e_SS', 'RF10_land_e_SG', 'RF10_land_e_DG', 'RF10_land_e_TF', 'RF10_land_e_JA', 'RF10_land_e_TR', 'RF10_land_e_GP', 'RF10_land_e_CP']
-species_revenues = ['RF10_rev_e_RS', 'RF10_rev_e_MS', 'RF10_rev_e_SS', 'RF10_rev_e_SG', 'RF10_rev_e_DG', 'RF10_rev_e_TF', 'RF10_rev_e_JA', 'RF10_rev_e_TR', 'RF10_rev_e_GP', 'RF10_rev_e_CP']
+
+# Manually remove Red Snapper (because it is included in mid-depth snappers)
+# - 'RF10_land_e_RS'
+# - 'RF10_rev_e_RS'
+species_landings = ['RF10_land_e_MS', 'RF10_land_e_SS', 'RF10_land_e_SG', 'RF10_land_e_DG', 'RF10_land_e_TF', 'RF10_land_e_JA', 'RF10_land_e_TR', 'RF10_land_e_GP', 'RF10_land_e_CP']
+species_revenues = ['RF10_rev_e_MS', 'RF10_rev_e_SS', 'RF10_rev_e_SG', 'RF10_rev_e_DG', 'RF10_rev_e_TF', 'RF10_rev_e_JA', 'RF10_rev_e_TR', 'RF10_rev_e_GP', 'RF10_rev_e_CP']
 
 
 
 def calc_totals(values, total_type):
+    """ total_type = 'land' or 'rev' """
+    # Note: Red snapped is included in mid-depth snapper total
+    #       therefore is is not included in species_landings and species_revenues
+    actual_total = None
+    other_species_total = None
+
+    # actual total
+    if (values[f'RF10_{total_type}_t_2007_2014'] is not None and
+        values[f'RF10_{total_type}_t_2015_2021'] is not None):
+
+        actual_total = (
+            values[f'RF10_{total_type}_t_2007_2014'] +
+            values[f'RF10_{total_type}_t_2015_2021']
+        )
+
+    # calculate "other species" total (as actutal_total - species_total)
     lookup = species_landings if total_type=='land' else species_revenues
 
-    total = None
+    species_total = None
     for k, v in values.items():
         if k in lookup:
             if v is not None:
-                total = total + v if total is not None else v
-    return f'{int(total):,}' if total is not None else '-'
+                species_total = species_total + v if species_total is not None else v
+
+    if species_total and actual_total is not None:
+        other_species_total = actual_total - species_total 
+
+    return (
+        f'{round(actual_total):,}' if actual_total is not None else '-',
+        f'{round(other_species_total):,}' if other_species_total is not None else '-', 
+    )
 
 
 # Process metadata and description
@@ -213,7 +240,10 @@ class FisheriesReportProcessor(BaseProcessor):
 
         for k in values:
             values[k] = report_by_feature(feature, k)
-            report_values[k] = '-' if values[k] is None else f"{int(values[k]):,}"
+            report_values[k] = '-' if values[k] is None else f"{round(values[k]):,}"
+
+        tot_land, other_species_land = calc_totals(values, total_type='land')
+        tot_rev, other_species_rev = calc_totals(values, total_type='rev')
 
         # FIXME: client has to parse as json to extract the text for the Report value
         outputs = {
@@ -221,8 +251,10 @@ class FisheriesReportProcessor(BaseProcessor):
             'Report': output.format(
                 name="",
                 comments=comment,
-                tot_land=calc_totals(values, total_type='land'),
-                tot_rev=calc_totals(values, total_type='rev'),
+                tot_land=tot_land,
+                other_species_land=other_species_land,
+                tot_rev=tot_rev,
+                other_species_rev=other_species_rev,
                 **report_values,
             )
         }
