@@ -1,3 +1,4 @@
+""" DEPRECIATED - this module is being replaced by report.py """
 import logging
 
 from pygeoapi.process.base import BaseProcessor, ProcessorExecuteError

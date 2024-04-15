@@ -1,4 +1,5 @@
 import json
+import logging
 
 from geoalchemy2.shape import from_shape
 import numpy as np
@@ -8,6 +9,8 @@ from sqlalchemy import func
 from fisheries.fip.models import CountiesEdited
 from fisheries.fip.models import *
 from fisheries.fip.db import Session
+
+from fisheries.fip.query.raster import from_polygon
 
 
 # Beware the depluralization of the class names
@@ -49,14 +52,15 @@ table_lookup = {
 }
 
 
-
 def report_by_feature(geojson, variable):
     if isinstance(geojson, str):
+        # TODO: handle variants of GeoJSON (feature, featurecollection)
         geojson = json.loads(geojson)
 
     with Session() as session:
         geometry_type = geojson['type']
 
+        # TODO: refactor into separate functions
         if geometry_type == 'Point':
             lon, lat = geojson['coordinates']
             point = from_shape(Point(lon, lat), srid=4269)
@@ -79,22 +83,28 @@ def report_by_feature(geojson, variable):
                 return None
 
         elif geometry_type == 'Polygon':
-            return f"-{variable}-"
-            # Shapely requires input that supports __array_interface__ (like a NumPy array) instead of a list of lists
-            coordinates = np.array(geojson['coordinates'])
-            polygon = from_shape(Polygon(coordinates), srid=4269)
-            intersecting_counties = session.query(
-                CountiesEdited,
-                # Calculate the proportion of the county intersecting with the polygon
-                (func.ST_Area(func.ST_Intersection(CountiesEdited.wkb_geometry, polygon)) /
-                func.ST_Area(CountiesEdited.wkb_geometry)).label('proportion_in_polygon')
-            ).filter(
-                func.ST_Intersects(CountiesEdited.wkb_geometry, polygon)
-            ).all()
+            polygon_coordinates = geojson['coordinates']
 
-            # This will return a list of tuples, with each tuple containing a CountiesEdited object 
-            # and the proportion of its area that is within the polygon.
-            return [(county.countyname, proportion) for county, proportion in intersecting_counties]
+            # Check and adjust the format of polygon_coordinates to ensure it's a list of lists
+            if isinstance(polygon_coordinates[0][0], float):
+                # This means the coordinates are in the simple format and need to be wrapped in another list
+                polygon_coordinates = [polygon_coordinates]  # Correct the format by wrapping in a list
 
-        else:
-            raise ValueError("Invalid GeoJSON type. Must be 'Point' or 'Polygon'.")
+            # Generate a query to extract all raster values that intersect with the polygon
+            return from_polygon(session, variable, polygon_coordinates)
+
+
+if __name__ == '__main__':
+    # Run `report_by_feature(geojson, variable)` with example geojson and variable
+    # Currently texting this inside the pygeoapi container with:
+    # docker exec fip-pygeoapi-1 python3 /fisheries/fisheries/fip/report.py
+
+    # An input like the following is currently coming from the front end
+    geojson = '{"feature":"{\"type\":\"Polygon\",\"coordinates\":[[-84.71269813091097,28.847503496854813],[-84.61483069420395,28.835827809755813],[-84.6293112701231,28.747982590431548],[-84.72844093762872,28.757855812612746],[-84.71269813091097,28.847503496854813]]}"}'
+
+    # Manually removed outer dict to allow json.loads to work without 'missing ,' error
+    # note geometry type is 'Polygon'
+    geojson = '{\"type\":\"Polygon\",\"coordinates\":[[-84.71269813091097,28.847503496854813],[-84.61483069420395,28.835827809755813],[-84.6293112701231,28.747982590431548],[-84.72844093762872,28.757855812612746],[-84.71269813091097,28.847503496854813]]}'
+    variable = 'RF10_land_e_RS'
+
+    report_by_feature(geojson, variable)

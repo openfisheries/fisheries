@@ -1,3 +1,7 @@
+# FIXME:
+# a) this shouldn't be here (not sure it's used)
+# b) there will be a next version (with missing layers added and without depluralization)
+
 # Beware the depluralization of the class names
 table_lookup = {
     'RF10_land_e_RS': Rf10LandER,

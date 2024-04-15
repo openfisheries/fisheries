@@ -39,6 +39,7 @@ def transform_geojson(geojson: Dict,
     - The function allows specifying both input and output CRS.
     - The default input CRS is 'EPSG:3857', and the default output CRS is 'EPSG:4326'.
     """
+    # TODO: tests - incl recovering from poor GeoJSON, input Shapely object, dict or JSON string
     geometry = shape(geojson)
     transformer = Transformer.from_crs(input_crs, output_crs, always_xy=True)
     return transform(lambda x, y: transformer.transform(x, y), geometry)

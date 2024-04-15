@@ -3,12 +3,15 @@ import logging
 
 from pygeoapi.process.base import BaseProcessor, ProcessorExecuteError
 
-from ..reportbyfeature import report_by_feature
+from ..report import report_by_feature
 
 
 LOGGER = logging.getLogger(__name__)
 
 
+# FIXME: This file should only define the process to be registered and pass all the work to another module
+
+# FIXME: Move csvText and JS into Map.jsx and rebuild ?
 output = """
 <h2 class="text-center">Reef Fish Landings and Revenues (2007-2021)</h2>
 <br/>
@@ -22,8 +25,8 @@ output = """
     <tr><th colspan=3 class="col-1"><b>Species</b></td></tr>
     <tr>
         <td>Mid-depth snappers<br/> &nbsp; (of which Red Snapper)</td>
-        <td>{RF10_land_e_MS}<br/>({RF10_land_e_RS})</td>
-        <td>{RF10_rev_e_MS}<br/>({RF10_rev_e_RS})</td>
+        <td>{RF10_land_e_MS}<br/>{left_bracket}{RF10_land_e_RS}{right_bracket}</td>
+        <td>{RF10_rev_e_MS}<br/>{left_bracket}{RF10_rev_e_RS}{right_bracket}</td>
     </tr>
     <tr><td>Shallow-water snappers</td><td>{RF10_land_e_SS}</td><td>{RF10_rev_e_SS}</td></tr>
     <tr><td>Shallow-water groupers</td><td>{RF10_land_e_SG}</td><td>{RF10_rev_e_SG}</td></tr>
@@ -49,14 +52,29 @@ output = """
 </table>
 
 <br/>
-<span class="text-center">Download: 
-  <a href="" style="color: grey; pointer-events: none; cursor: default;">CSV</a>, 
+<span class="text-center">
+  Download <button id="download-csv" onclick="{javascript}">CSV</button>
   <!--<a href="" style="color: grey; pointer-events: none; cursor: default;">PDF</a>-->
 </span>
 
 <!-- {comments} -->
 
-<div id="csvText">{csv_text}</div>
+<div id="csvText" style="display: none">{csv_text}</div>
+"""
+
+javascript = """
+  csvText = document.getElementById('csvText').innerText;
+  console.log(csvText);
+  var blob = new Blob([csvText], { type: 'text/csv;charset=utf-8;' });
+  
+  var downloadLink = document.createElement('a');
+  downloadLink.href = URL.createObjectURL(blob);
+  downloadLink.setAttribute('download', 'report.csv');
+  
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  
+  document.body.removeChild(downloadLink);
 """
 
 
@@ -68,7 +86,7 @@ Total,{tot_land},{tot_rev}
 Species,,
 Mid-depth snappers,{RF10_land_e_MS},{RF10_rev_e_MS}
    (of which Red Snapper),({RF10_land_e_RS}),({RF10_rev_e_RS})
-Shallow-water snappers,{RF10_land_e_SS,{RF10_rev_e_SS}
+Shallow-water snappers,{RF10_land_e_SS},{RF10_rev_e_SS}
 Shallow-water groupers,{RF10_land_e_SG},{RF10_rev_e_SG}
 Deep-water groupers,{RF10_land_e_DG},{RF10_rev_e_DG}
 Tilefishes,{RF10_land_e_TF},{RF10_rev_e_TF}
@@ -246,7 +264,7 @@ PROCESS_METADATA = {
 }
 
 
-class FisheriesReportProcessor(BaseProcessor):
+class ReportProcessor(BaseProcessor):
     """Fisheries Report From Feature Processor"""
 
     def __init__(self, processor_def):
@@ -255,7 +273,7 @@ class FisheriesReportProcessor(BaseProcessor):
 
         :param processor_def: provider definition
 
-        :returns: pygeoapi.process.fip.fisheries_report.FisheriesReportProcessor
+        :returns: pygeoapi.process.fip.report.ReportProcessor
         """
 
         super().__init__(processor_def, PROCESS_METADATA)
@@ -274,17 +292,20 @@ class FisheriesReportProcessor(BaseProcessor):
             values[k] = report_by_feature(feature, k)
             report_values[k] = '-' if values[k] is None else f"{round(values[k]):,}"
 
+        # In the HTML version, if red snapper values exist they are in parenthesis
+        red_snappers_exist = values['RF10_land_e_RS'] is not None and \
+            values['RF10_rev_e_RS'] is not None
+        left_bracket,right_bracket='()' if red_snappers_exist else ('', '')
+
         tot_land, other_species_land = calc_totals(values, total_type='land')
         tot_rev, other_species_rev = calc_totals(values, total_type='rev')
 
         csv_populated = csv_text.format(
             name='',
-            comments=comment,
             tot_land=tot_land,
             other_species_land=other_species_land,
             tot_rev=tot_rev,
             other_species_rev=other_species_rev,
-            csv_text=csv_populated,
             **report_values,
         )
 
@@ -292,6 +313,12 @@ class FisheriesReportProcessor(BaseProcessor):
         outputs = {
             # 'Report': value
             'Report': output.format(
+                comments=comment,
+                csv_text=csv_populated,
+                left_bracket=left_bracket,
+                right_bracket=right_bracket,
+                javascript=javascript,
+
                 name='',
                 tot_land=tot_land,
                 other_species_land=other_species_land,
