@@ -1,7 +1,9 @@
 from collections import OrderedDict
 import logging
 
-from pygeoapi.process.base import BaseProcessor, ProcessorExecuteError
+from pygeoapi.process.base import BaseProcessor
+
+from ..territory import return_territory
 
 
 LOGGER = logging.getLogger(__name__)
@@ -72,18 +74,8 @@ class TerritoryProcessor(BaseProcessor):
         super().__init__(processor_def, PROCESS_METADATA)
 
     def execute(self, data):
-        mimetype = 'application/json'
-        county = data.get('county')
-
-        if county is None:
-            raise ProcessorExecuteError('Cannot return territory without input county id')
-
-        outputs = {
-            'county': county
-        }
-
+        mimetype, outputs = return_territory(data)
         return mimetype, outputs
-
 
     def __repr__(self):
         return f'<ReturnTerritoryProcessor> {self.name}'
