@@ -1,10 +1,11 @@
 """
-The `raster` module is responsible for getting results from raster queries
+The `raster` module is responsible for getting results from raster queries.
 
-the Class knows about the tables. you can then ask it for tables, totals, weighted sums etc.
+The Class knows about the tables. you can then ask it for tables, totals, weighted sums etc.
 
 """
 
+# Not implemented...
 class FromRasters():
     def __init__(self):
         """
@@ -53,6 +54,8 @@ def from_polygon(session, table_name, polygon_coordinates):
     # test value
     # wkt = 'POLYGON((2975206.2278075265 7305263.57216,3005159.353245655 7305197.212714661,3005555.7820766345 7274098.9,2974811.9170059203 7274773.793788631,2975206.2278075265 7305263.57216))'
 
+    '''
+    # Original version (only select centroid within polygon and provides non-weighted totals)
     sql_query = text(f"""
         SELECT sum(ST_Value(rast, geom)) AS value
         FROM {table_name},
@@ -62,9 +65,44 @@ def from_polygon(session, table_name, polygon_coordinates):
             ST_GeomFromText('{polygon.wkt}', 3083)
         );
     """)
+    '''
+
+    # Update version to calc proportion of cell inside polygon and return weighted totals
+    # NOTE: not using bind params because table_name comes from dict lookup and WKT is generated from our code
+    sql_query = text(f"""
+        WITH query AS (
+            SELECT ST_GeomFromText('{polygon.wkt}', 3083) AS geom
+        ),
+        squares AS (
+            SELECT
+                (ST_DumpAsPolygons(rast)).*  -- geom, val
+            FROM
+                {table_name}
+        ),
+        interim AS (
+            SELECT
+                ST_Intersection(squares.geom, query.geom) AS geom,
+                ST_Area(  (ST_Intersection(squares.geom, query.geom))  ) AS new_area,
+                squares.val AS original_value,
+                ST_Area(squares.geom) AS original_area
+            FROM
+                squares, query
+            WHERE
+                ST_Intersects(squares.geom, query.geom)
+        ),
+        result AS (
+            SELECT
+                -- geom,
+                -- original_value,
+                -- new_area / original_area AS proportion,
+                original_value * (new_area / original_area) AS weighted_value
+            FROM interim
+        )
+        SELECT sum(weighted_value) FROM result;
+    """)
 
     # result = session.execute(sql_query, {'geom': geom, 'srs_id': 3083})
     result = session.execute(sql_query)
 
-    # Result contains a single row with a single column containing the sum
+    # Result contains a single row where the first column contains the (weighted) sum
     return(result.fetchone()[0])

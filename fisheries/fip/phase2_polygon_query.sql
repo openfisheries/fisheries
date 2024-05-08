@@ -6,10 +6,13 @@
 --
 -- Recommendations:
 -- Polygon reports should not have to return real-time
--- DBT should be used to manage the queries
+-- DBT could be used to manage the queries
 
 
 -- Common Table Expression (CTE) to get raster data intersecting with a specific polygon
+-- In our case we currently have one raster per table (due to not all rasters having the
+-- same properties), therefore this query will return zero of one rows depending on whether
+-- the raster overall intersects the polygon. See below for tests
 WITH raster_info AS (
     -- Select raster and a manually defined polygon geometry
     SELECT 
@@ -18,12 +21,16 @@ WITH raster_info AS (
     FROM 
         RF10_land_e_RS,  -- Your raster data table
         -- Define the polygon with specified coordinates and SRID 3083
-        (SELECT ST_GeomFromText('POLYGON ((2985198.053235203 7294767.685572192, 2994824.5092220223 7294802.009095271, 2994776.0094108097 7284952.735455229, 2985046.574731292 7284703.34408373, 2985198.053235203 7294767.685572192))', 3083) AS geom) AS my_polygon
+        (SELECT ST_GeomFromText('POLYGON((2975206.2278075265 7305263.57216,3005159.353245655 7305197.212714661,3005555.7820766345 7274098.9,2974811.9170059203 7274773.793788631,2975206.2278075265 7305263.57216))', 3083) AS geom) AS my_polygon
     WHERE 
         ST_Intersects(rast, geom)  -- Select only rasters that intersect with the polygon
 ),
 
+-- SELECT count(*) FROM raster_info  -- (1 row)
+
 -- CTE to clip the raster data by the intersecting polygon's geometry
+-- note `geom` is available as one of the two columns returned in raster_info
+-- This CTE returns a single column called `clipped_rast` (with a single row returned)
 clipped_rasters AS (
     SELECT 
         ST_Clip(rast, geom) AS clipped_rast  -- Clip raster to the boundary of the polygon
@@ -31,13 +38,16 @@ clipped_rasters AS (
         raster_info
 ),
 
+-- Test:
+-- SELECT count(*) FROM clipped_rasters  -- (1 row)
+
 -- CTE to extract all raster cell polygons
 all_cells AS (
     SELECT
         (ST_PixelAsPolygons(clipped_rast)).*  -- Convert each raster pixel to a polygon
     FROM
         clipped_rasters
-),
+)
 
 -- CTE to identify edge cells
 edge_cells AS (
@@ -70,3 +80,11 @@ SELECT
     val    -- Value of each non-edge cell
 FROM 
     non_edge_cells;
+
+
+-----------
+-- TESTS --
+-----------
+
+-- WITH raster_info
+-- can be tested with polygons that do/don not intesect and counting the number of returned rows

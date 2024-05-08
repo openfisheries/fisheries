@@ -1,6 +1,7 @@
 from pygeoapi.process.base import ProcessorExecuteError
 
-from fisheries.fip.query.raster import territories_by_county
+from fisheries.fip.db import Session
+from fisheries.fip.query.vector import territories_by_county
 
 
 def return_territory(data):
@@ -10,8 +11,9 @@ def return_territory(data):
     if county is None:
         raise ProcessorExecuteError('Cannot return territory without input county id')
 
-    outputs = {
-        'county': territories_by_county(county)
-    }
+    with Session() as session:
+        outputs = {
+            'county': territories_by_county(session, county)
+        }
 
     return mimetype, outputs

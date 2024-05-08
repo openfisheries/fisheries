@@ -3,7 +3,7 @@ import logging
 
 from pygeoapi.process.base import BaseProcessor, ProcessorExecuteError
 
-from ..report import report_by_feature
+from ..report import report_by_feature, temp_output
 
 
 LOGGER = logging.getLogger(__name__)
@@ -287,6 +287,16 @@ class ReportProcessor(BaseProcessor):
             raise ProcessorExecuteError('Cannot process without GeoJSON feature input data')
         comment = f'Feature: {feature}'
         report_values = {}
+
+        # TEMPORARY: this code is for debugging
+        try:
+            import json
+            geojson = json.loads(feature)
+            if geojson['coordinates'][0] > 0:
+                return mimetype, temp_output()
+        except:
+            pass
+        # end temporary code
 
         for k in values:
             values[k] = report_by_feature(feature, k)
