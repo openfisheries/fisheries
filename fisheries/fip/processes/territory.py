@@ -43,8 +43,21 @@ PROCESS_METADATA = {
     },
     'outputs': {
         'county': {
-            'title': 'County GeoJSON',
-            'description': 'GeoJSON of county',
+            'title': 'County name',
+            'description': 'Name of the county for the territory',
+            'type': 'string'
+        },
+        'reef_territory': {
+            'title': 'Reef territory GeoJSON',
+            'description': 'GeoJSON of reef territory',
+            'schema': {
+                'type': 'object',
+                'contentMediaType': 'application/json'  # FIXME: different content types?
+            }
+        },
+        'shrimp_territory': {
+            'title': 'Shrimp territory GeoJSON',
+            'description': 'GeoJSON of shrimp territory',
             'schema': {
                 'type': 'object',
                 'contentMediaType': 'application/json'  # FIXME: different content types?

@@ -1,0 +1,57 @@
+export PGPASSWORD='admin'
+
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_land_e_BS.tif SF10_land_e_BS | psql -h localhost -d fip -U fip
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_rev_e_BS.tif SF10_rev_e_BS | psql -h localhost -d fip -U fip
+
+
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_land_e_WS.tif SF10_land_e_WS | psql -h localhost -d fip -U fip
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_rev_e_WS.tif SF10_rev_e_WS | psql -h localhost -d fip -U fip
+
+
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_land_e_S.tif SF10_land_e_S | psql -h localhost -d fip -U fip
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_rev_e_S.tif SF10_rev_e_S | psql -h localhost -d fip -U fip
+
+
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_land_e_RS.tif SF10_land_e_RS | psql -h localhost -d fip -U fip
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_rev_e_RS.tif SF10_rev_e_RS | psql -h localhost -d fip -U fip
+
+
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_land_e_T.tif SF10_land_e_T | psql -h localhost -d fip -U fip
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_rev_e_T.tif SF10_rev_e_T | psql -h localhost -d fip -U fip
+
+
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_land_e_PS.tif SF10_land_e_PS | psql -h localhost -d fip -U fip
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_rev_e_PS.tif SF10_rev_e_PS | psql -h localhost -d fip -U fip
+
+
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_land_e_RRS.tif SF10_land_e_RRS | psql -h localhost -d fip -U fip
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_rev_e_RRS.tif SF10_rev_e_RRS | psql -h localhost -d fip -U fip
+
+
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_land_t_2007_2014.tif SF10_land_t_2007_2014 | psql -h localhost -d fip -U fip
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_rev_t_2007_2014.tif SF10_rev_t_2007_2014 | psql -h localhost -d fip -U fip
+
+
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_land_t_2015_2021.tif SF10_land_t_2015_2021 | psql -h localhost -d fip -U fip
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_rev_t_2015_2021.tif SF10_rev_t_2015_2021 | psql -h localhost -d fip -U fip
+
+
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_land_s_FL.tif SF10_land_s_FL | psql -h localhost -d fip -U fip
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_rev_s_FL.tif SF10_rev_s_FL | psql -h localhost -d fip -U fip
+
+
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_land_s_AL.tif SF10_land_s_AL | psql -h localhost -d fip -U fip
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_rev_s_AL.tif SF10_rev_s_AL | psql -h localhost -d fip -U fip
+
+
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_land_s_MS.tif SF10_land_s_MS | psql -h localhost -d fip -U fip
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_rev_s_MS.tif SF10_rev_s_MS | psql -h localhost -d fip -U fip
+
+
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_land_s_LA.tif SF10_land_s_LA | psql -h localhost -d fip -U fip
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_rev_s_LA.tif SF10_rev_s_LA | psql -h localhost -d fip -U fip
+
+
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_land_s_TX.tif SF10_land_s_TX | psql -h localhost -d fip -U fip
+raster2pgsql -I -C -s 3083 fip-data/fip-data/fromR/10kmGrids/SF/SF10_rev_s_TX.tif SF10_rev_s_TX | psql -h localhost -d fip -U fip
+

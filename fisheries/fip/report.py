@@ -52,10 +52,6 @@ table_lookup = {
 }
 
 
-def temp_output():
-    return {'Report': '<p align="center"><img src="/mapstore/dist/themes/load-35_128.gif"/></p><h1><center>Please wait...</center></h1><h2><center>Generating report</center></h2>'}
-
-
 def report_by_feature(geojson, variable):
     if isinstance(geojson, str):
         # TODO: handle variants of GeoJSON (feature, featurecollection)

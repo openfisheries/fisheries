@@ -12,8 +12,11 @@ def return_territory(data):
         raise ProcessorExecuteError('Cannot return territory without input county id')
 
     with Session() as session:
+        rf, sf = territories_by_county(session, county)
         outputs = {
-            'county': territories_by_county(session, county)
+            'county': county,
+            'reef_territory': rf,
+            'shrimp_territory': sf,
         }
 
     return mimetype, outputs

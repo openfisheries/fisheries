@@ -1,29 +1,7 @@
 """
-The `raster` module is responsible for getting results from raster queries.
-
-The Class knows about the tables. you can then ask it for tables, totals, weighted sums etc.
+The `raster` module is responsible for getting results from raster tables.
 
 """
-
-# Not implemented...
-class FromRasters():
-    def __init__(self):
-        """
-        I know about the database connection, avaialable tables etc.
-        """
-        pass
-
-    def summary(self):
-        """I give you a complete summary table for a given geom"""
-        pass
-
-    def from_point(self):
-        pass
-
-    def from_polygon(self):
-        pass
-
-
 from geoalchemy2.shape import from_shape
 from shapely.geometry import Point, Polygon, shape
 from sqlalchemy import func
