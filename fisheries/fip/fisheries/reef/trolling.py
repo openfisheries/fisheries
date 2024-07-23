@@ -1,5 +1,5 @@
 from fisheries.fip.fisheries.mainreport import main_report
-from fisheries.fip.templates.reef.trolling import reef_trolling_template, javascript, csv_text
+from fisheries.fip.templates.reef.trolling import reef_trolling_template, reef_trolling_csv
 
 
 # 'RFTSG' Reef fish fisheries – trolling (statistical grid)
@@ -44,11 +44,13 @@ values = {
 }
 
 
-def report(feature):
+def report(feature, report_type):
     return main_report(
         feature,
+        report_type,
         values=values,
         title='Reef fish fisheries – trolling',
         type="reef fisheries ",
         template=reef_trolling_template,
+        csv_template=reef_trolling_csv,
     )

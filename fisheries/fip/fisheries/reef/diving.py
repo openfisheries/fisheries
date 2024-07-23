@@ -1,5 +1,5 @@
 from fisheries.fip.fisheries.mainreport import main_report
-from fisheries.fip.templates.reef.diving import reef_diving_template, javascript, csv_text
+from fisheries.fip.templates.reef.diving import reef_diving_template, reef_diving_csv
 
 
 # 'RFDSG' Reef fish fisheries - diving (statistical grid)
@@ -40,11 +40,13 @@ values = {
 }
 
 
-def report(feature):
+def report(feature, report_type):
     return main_report(
         feature,
+        report_type,
         values=values,
         title='Reef fish fisheries - diving',
         type="reef fisheries ",
         template=reef_diving_template,
+        csv_template=reef_diving_csv,
     )

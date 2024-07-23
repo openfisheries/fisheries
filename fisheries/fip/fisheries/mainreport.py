@@ -3,7 +3,7 @@ from fisheries.fip.query.query import Query
 from fisheries.fip.templates.nodata import nodata_template
 
 
-def main_report(feature, values, title, type, template):
+def main_report(feature, report_type, values, title, type, template, csv_template):
     comment = f'Feature: {feature}'
     query = Query(feature)
 
@@ -20,13 +20,20 @@ def main_report(feature, values, title, type, template):
         # Variable names passed to the template cannot contain periods
         cleaned_values = {key.replace('.', '_'): value for key, value in query.values.items()}
 
-        content = template.format(
-            comments=comment,
-            csv_text='', #csv_populated,
-            javascript='', #javascript,
-            name='',
-            **cleaned_values,
-        )
+        if report_type == 'csv':
+            # Remove thousands separators
+            values = {k: v.replace(',', '') if isinstance(v, str) else v for k, v in cleaned_values.items()}
 
-    # FIXME: client has to parse as json to extract the text for the Report value
+            content = csv_template.format(
+                name='',
+                **values,
+            )
+        else:
+            content = template.format(
+                comments=comment,
+                feature=feature,
+                name='',
+                **cleaned_values,
+            )
+
     return { 'Report': content }

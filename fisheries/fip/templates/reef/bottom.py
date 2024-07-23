@@ -1,10 +1,10 @@
-# FIXME: Move csvText and JS into Map.jsx and rebuild ?
 reef_bottom_template = """
 <p style="text-align: center; font-size: 20px; font-weight: bold;">Reef fish fisheries – bottom longline, bandit and handline</p>
+<p style="display: flex; justify-content: center; align-items: center;">Download <button style="margin-left: 5px; font-size: 8px;" id="download-csv" onclick='window.fipCsvReport({feature},"reef");'>CSV</button></p>
 <br/>
 <table class="table fip-table">
   <thead>
-    <tr><th class="col-1"><b>{name}</b></th><th><b>Landings</b></th><th><b>Revenues</b></th></tr>
+    <tr><th class="col-1"><b>{name}</b></th><th><b>Landings (pounds)</b></th><th><b>Revenues (USD)</b></th></tr>
   </thead>
   <tbody>
     <tr><th class="col-1"><b>Total</b></td><td>{tot_land}</td><td>{tot_rev}</td></tr>
@@ -38,37 +38,13 @@ reef_bottom_template = """
   </tbody>
 </table>
 
-<br/>
-<span class="text-center" style="display:none">
-  Download <button id="download-csv" onclick="{javascript}">CSV</button>
-  <!--<a href="" style="color: grey; pointer-events: none; cursor: default;">PDF</a>-->
-</span>
-
 <!-- {comments} -->
-
-<div id="csvText" style="display: none">{csv_text}</div>
-"""
-
-javascript = """
-  csvText = document.getElementById('csvText').innerText;
-  console.log(csvText);
-  var blob = new Blob([csvText], { type: 'text/csv;charset=utf-8;' });
-  
-  var downloadLink = document.createElement('a');
-  downloadLink.href = URL.createObjectURL(blob);
-  downloadLink.setAttribute('download', 'report.csv');
-  
-  document.body.appendChild(downloadLink);
-  downloadLink.click();
-  
-  document.body.removeChild(downloadLink);
 """
 
 
-csv_text = """
-Reef Fish Landings and Revenues (2007-2021),,
-,,
-{name},Landings,Revenues
+# Filename: Reef Fish Landings and Revenues (2007-2021),,
+#           or {name} (otherwise unused)
+reef_csv = """,Landings (pounds),Revenues (USD)
 Total,{tot_land},{tot_rev}
 Species,,
 Mid-depth snappers,{RF10_land_e_MS},{RF10_rev_e_MS}
@@ -82,9 +58,11 @@ Triggerfishes,{RF10_land_e_TR},{RF10_rev_e_TR}
 Grunts and porgies,{RF10_land_e_GP},{RF10_rev_e_GP}
 Coastal pelagic,{RF10_land_e_CP},{RF10_rev_e_CP}
 Other species,{other_species_land},{other_species_rev}
+
 Time period,,
 2007-2014,{RF10_land_t_2007_2014},{RF10_rev_t_2007_2014}
 2015-2021,{RF10_land_t_2015_2021},{RF10_rev_t_2015_2021}
+
 State,,
 Florida,{RF10_land_s_FL},{RF10_rev_s_FL}
 Alabama,{RF10_land_s_AL},{RF10_rev_s_AL}

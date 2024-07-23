@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 from ...report import report_by_feature
-from ...templates.reef.bottom import reef_bottom_template, javascript, csv_text
+from ...templates.reef.bottom import reef_bottom_template, reef_csv
 from ...templates.nodata import nodata_template
 
 # For RF10 layers we couldn't use the available totals because red snapper is also already included in
@@ -82,7 +82,7 @@ def calc_totals(values, total_type):
     )
 
 
-def reef_report(feature):
+def reef_report(feature, report_type):
     comment = f'Feature: {feature}'
     report_values = {}
     values = reef_values
@@ -105,35 +105,34 @@ def reef_report(feature):
 
         tot_land, other_species_land = calc_totals(values, total_type='land')
         tot_rev, other_species_rev = calc_totals(values, total_type='rev')
-        '''
-        csv_populated = csv_text.format(
-            name='',
-            tot_land=tot_land,
-            other_species_land=other_species_land,
-            tot_rev=tot_rev,
-            other_species_rev=other_species_rev,
-            **report_values,
-        )
-        '''
-        content = reef_bottom_template.format(
-            comments=comment,
-            csv_text='',  # csv_populated,
-            left_bracket=left_bracket,
-            right_bracket=right_bracket,
-            javascript=javascript,
-            name='',
-            tot_land=tot_land,
-            other_species_land=other_species_land,
-            tot_rev=tot_rev,
-            other_species_rev=other_species_rev,
-            **report_values,
-        )
 
-    # FIXME: client has to parse as json to extract the text for the Report value
-    return {
-        # 'Report': value
-        'Report': content,
-    }
+        if report_type == 'csv':
+            # Remove thousands separators
+            values = {k: v.replace(',', '') if isinstance(v, str) else v for k, v in report_values.items()}
+
+            content = reef_csv.format(
+                name='',
+                tot_land=tot_land.replace(',', '') if isinstance(tot_land, str) else tot_land,
+                other_species_land=other_species_land.replace(',', '') if isinstance(other_species_land, str) else other_species_land,
+                tot_rev=tot_rev.replace(',', '') if isinstance(tot_rev, str) else tot_rev,
+                other_species_rev=other_species_rev.replace(',', '') if isinstance(other_species_rev, str) else other_species_rev,
+                **values,
+            )
+        else:
+            content = reef_bottom_template.format(
+                comments=comment,
+                feature=feature,
+                left_bracket=left_bracket,
+                right_bracket=right_bracket,
+                name='',
+                tot_land=tot_land,
+                other_species_land=other_species_land,
+                tot_rev=tot_rev,
+                other_species_rev=other_species_rev,
+                **report_values,
+            )
+
+    return {'Report': content}
 
 
 if __name__ == '__main__':

@@ -9,7 +9,7 @@ from fisheries.fip.db import Session
 from fisheries.fip.models import *
 from fisheries.fip.query.raster import from_polygon
 
-from ..templates.shrimp_report import shrimp_template, javascript, csv_text
+from ..templates.shrimp_report import shrimp_template, shrimp_csv
 from ..templates.nodata import nodata_template
 
 
@@ -142,7 +142,11 @@ def calc_totals(values, total_type):
     )
 
 
-def shrimp_report(feature):
+def shrimp_report(feature, report_type):
+    """
+    Default to returning HTML unless report_type == 'csv'
+
+    """
     comment = f'Feature: {feature}'
     report_values = {}
     values = shrimp_values
@@ -160,32 +164,32 @@ def shrimp_report(feature):
     else:
         tot_land, other_species_land = calc_totals(values, total_type='land')
         tot_rev, other_species_rev = calc_totals(values, total_type='rev')
-        '''
-        csv_populated = csv_text.format(
-            name='',
-            tot_land=tot_land,
-            other_species_land=other_species_land,
-            tot_rev=tot_rev,
-            other_species_rev=other_species_rev,
-            **report_values,
-        )
-        '''
-        content = shrimp_template.format(
-            comments=comment,
-            csv_text='', #csv_populated,
-            javascript=javascript,
-            name='',
-            tot_land=tot_land,
-            other_species_land=other_species_land,
-            tot_rev=tot_rev,
-            other_species_rev=other_species_rev,
-            **report_values,
-        )
 
-    # FIXME: client has to parse as json to extract the text for the Report value
-    return {
-        'Report': content,
-    }
+        if report_type == 'csv':
+            # Remove thousands separators
+            values = {k: v.replace(',', '') if isinstance(v, str) else v for k, v in report_values.items()}
+
+            content = shrimp_csv.format(
+                name='',
+                tot_land=tot_land.replace(',', '') if isinstance(tot_land, str) else tot_land,
+                other_species_land=other_species_land.replace(',', '') if isinstance(other_species_land, str) else other_species_land,
+                tot_rev=tot_rev.replace(',', '') if isinstance(tot_rev, str) else tot_rev,
+                other_species_rev=other_species_rev.replace(',', '') if isinstance(other_species_rev, str) else other_species_rev,
+                **values,
+            )
+        else:
+            content = shrimp_template.format(
+                comments=comment,
+                feature=feature,
+                name='',
+                tot_land=tot_land,
+                other_species_land=other_species_land,
+                tot_rev=tot_rev,
+                other_species_rev=other_species_rev,
+                **report_values,
+            )
+
+    return {'Report': content}
 
 
 if __name__ == '__main__':
@@ -200,7 +204,3 @@ if __name__ == '__main__':
 
     print(species_landings)
     print(species_revenues)
-
-
-
-

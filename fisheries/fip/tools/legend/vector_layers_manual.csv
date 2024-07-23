@@ -1,0 +1,188 @@
+sfsg,lnd_vrl,,,SF Overall Landings
+sfsg,rv_vrll,,,SF Overall Revenues
+sfsg,lnd__bs,,,SF Landings Brown shrimp
+sfsg,rev__bs,,,SF Revenues Brown shrimp
+sfsg,lnd__ws,,,SF Landings White shrimp
+sfsg,rev__ws,,,SF Revenues White shrimp
+sfsg,land__s,,,SF Landings Seabobs
+sfsg,rev_e_s,,,SF Revenues Seabobs
+sfsg,lnd__rs,,,SF Landings Rock shrimp
+sfsg,rev__rs,,,SF Revenues Rock shrimp
+sfsg,land__t,,,SF Landings Trachypenaeus
+sfsg,rev_e_t,,,SF Revenues Trachypenaeus
+sfsg,lnd__ps,,,SF Landings Pink shrimp
+sfsg,rev__ps,,,SF Revenues Pink shrimp
+sfsg,ln__rrs,,,SF Landings Royal red shrimp
+sfsg,rv__rrs,,,SF Revenues Royal red shrimp
+sfsg_t_2007_2014,lnd_vrl,,,SF Landings 2007-2014
+sfsg_t_2007_2014,rv_vrll,,,SF Revenues 2007-2014
+sfsg_t_2015_2021,lnd_vrl,,,SF Landings 2015-2021
+sfsg_t_2015_2021,rv_vrll,,,SF Revenues 2015-2021
+sfsg_s_fl,lnd_vrl,,,SF Landings Florida
+sfsg_s_fl,rv_vrll,,,SF Revenues Florida
+sfsg_s_al,lnd_vrl,,,SF Landings Alabama
+sfsg_s_al,rv_vrll,,,SF Revenues Alabama
+sfsg_s_ms,lnd_vrl,,,SF Landings Mississippi
+sfsg_s_ms,rv_vrll,,,SF Revenues Mississippi
+sfsg_s_la,lnd_vrl,,,SF Landings Louisiana
+sfsg_s_la,rv_vrll,,,SF Revenues Louisiana
+sfsg_s_tx,lnd_vrl,,,SF Landings Texas
+sfsg_s_tx,rv_vrll,,,SF Revenues Texas
+rfsg,lnd_vrl,,,RF Overall Landings
+rfsg,rv_vrll,,,RF Overall Revenues
+rfsg,lnd__rs,,,RF Landings Red Snapper
+rfsg,rev__rs,,,RF Revenues Red Snapper
+rfsg,lnd__ms,,,RF Landings Mid-depth snapper group
+rfsg,rev__ms,,,RF Revenues Mid-depth snapper group
+rfsg,lnd__ss,,,RF Landings Shallow-water snapper group
+rfsg,rev__ss,,,RF Revenues Shallow-water snapper group
+rfsg,lnd__sg,,,RF Landings Shallow-water grouper group
+rfsg,rev__sg,,,RF Revenues Shallow-water grouper group
+rfsg,lnd__dg,,,RF Landings Deep-water grouper group
+rfsg,rev__dg,,,RF Revenues Deep-water grouper group
+rfsg,lnd__tf,,,RF Landings Tilefishes group
+rfsg,rev__tf,,,RF Revenues Tilefishes group
+rfsg,lnd__ja,,,RF Landings Jacks group
+rfsg,rev__ja,,,RF Revenues Jacks group
+rfsg,lnd__tr,,,RF Landings Triggerfishes group
+rfsg,rev__tr,,,RF Revenues Triggerfishes group
+rfsg,lnd__gp,,,RF Landings Grunts and porgies group
+rfsg,rev__gp,,,RF Revenues Grunts and porgies group
+rfsg,lnd__cp,,,RF Landings Coastal pelagics group
+rfsg,rev__cp,,,RF Revenues Coastal pelagics group
+rfsg_t_2007_2014,lnd_vrl,,,RF Landings 2007-2014
+rfsg_t_2007_2014,rv_vrll,,,RF Revenues 2007-2014
+rfsg_t_2015_2021,lnd_vrl,,,RF Landings 2015-2021
+rfsg_t_2015_2021,rv_vrll,,,RF Revenues 2015-2021
+rfsg_s_fl,lnd_vrl,,,RF Landings Florida
+rfsg_s_fl,rv_vrll,,,RF Revenues Florida
+rfsg_s_al,lnd_vrl,,,RF Landings Alabama
+rfsg_s_al,rv_vrll,,,RF Revenues Alabama
+rfsg_s_ms,lnd_vrl,,,RF Landings Mississippi
+rfsg_s_ms,rv_vrll,,,RF Revenues Mississippi
+rfsg_s_la,lnd_vrl,,,RF Landings Louisiana
+rfsg_s_la,rv_vrll,,,RF Revenues Louisiana
+rfsg_s_tx,lnd_vrl,,,RF Landings Texas
+rfsg_s_tx,rv_vrll,,,RF Revenues Texas
+rfdsg,lnd_vrl,,,RFD 
+rfdsg,rv_vrll,,,RFD 
+rfdsg,lnd__rs,,,RFD 
+rfdsg,rev__rs,,,RFD 
+rfdsg,lnd__ms,,,RFD 
+rfdsg,rev__ms,,,RFD 
+rfdsg,lnd__ss,,,RFD 
+rfdsg,rev__ss,,,RFD 
+rfdsg,lnd__sg,,,RFD 
+rfdsg,rev__sg,,,RFD 
+rfdsg,lnd__dg,,,RFD 
+rfdsg,rev__dg,,,RFD 
+rfdsg,lnd__tf,,,RFD 
+rfdsg,rev__tf,,,RFD 
+rfdsg,lnd__ja,,,RFD 
+rfdsg,rev__ja,,,RFD 
+rfdsg,lnd__tr,,,RFD 
+rfdsg,rev__tr,,,RFD 
+rfdsg,lnd__gp,,,RFD 
+rfdsg,rev__gp,,,RFD 
+rfdsg,lnd__cp,,,RFD 
+rfdsg,rev__cp,,,RFD 
+rfdsg_t_2007_2014,lnd_vrl,,,RFD Landings 2007-2014
+rfdsg_t_2007_2014,rv_vrll,,,RFD Revenues 2007-2014
+rfdsg_t_2015_2021,lnd_vrl,,,RFD Landings 2015-2021
+rfdsg_t_2015_2021,rv_vrll,,,RFD Revenues 2015-2021
+rfdsg_s_fl,lnd_vrl,,,RFD Landings Florida
+rfdsg_s_fl,rv_vrll,,,RFD Revenues Florida
+rfbsg,lnd_vrl,,,RFB 
+rfbsg,rv_vrll,,,RFB 
+rfbsg,lnd__rs,,,RFB 
+rfbsg,rev__rs,,,RFB 
+rfbsg,lnd__ms,,,RFB 
+rfbsg,rev__ms,,,RFB 
+rfbsg,lnd__ss,,,RFB 
+rfbsg,rev__ss,,,RFB 
+rfbsg,lnd__sg,,,RFB 
+rfbsg,rev__sg,,,RFB 
+rfbsg,lnd__dg,,,RFB 
+rfbsg,rev__dg,,,RFB 
+rfbsg,lnd__tf,,,RFB 
+rfbsg,rev__tf,,,RFB 
+rfbsg,lnd__ja,,,RFB 
+rfbsg,rev__ja,,,RFB 
+rfbsg,lnd__tr,,,RFB 
+rfbsg,rev__tr,,,RFB 
+rfbsg,lnd__gp,,,RFB 
+rfbsg,rev__gp,,,RFB 
+rfbsg,lnd__cp,,,RFB 
+rfbsg,rev__cp,,,RFB 
+rfbsg_t_2007_2014,lnd_vrl,,,RFB Landings 2007-2014
+rfbsg_t_2007_2014,rv_vrll,,,RFB Revenues 2007-2014
+rfbsg_t_2015_2021,lnd_vrl,,,RFB Landings 2015-2021
+rfbsg_t_2015_2021,rv_vrll,,,RFB Revenues 2015-2021
+rfbsg_s_fl,lnd_vrl,,,RFB Landings Florida
+rfbsg_s_fl,rv_vrll,,,RFB Revenues Florida
+rfgnsg,lnd_vrl,,,RFGN 
+rfgnsg,rv_vrll,,,RFGN 
+rfgnsg,lnd__rs,,,RFGN 
+rfgnsg,rev__rs,,,RFGN 
+rfgnsg,lnd__ms,,,RFGN 
+rfgnsg,rev__ms,,,RFGN 
+rfgnsg,lnd__ss,,,RFGN 
+rfgnsg,rev__ss,,,RFGN 
+rfgnsg,lnd__sg,,,RFGN 
+rfgnsg,rev__sg,,,RFGN 
+rfgnsg,lnd__dg,,,RFGN 
+rfgnsg,rev__dg,,,RFGN 
+rfgnsg,lnd__tf,,,RFGN 
+rfgnsg,rev__tf,,,RFGN 
+rfgnsg,lnd__ja,,,RFGN 
+rfgnsg,rev__ja,,,RFGN 
+rfgnsg,lnd__tr,,,RFGN 
+rfgnsg,rev__tr,,,RFGN 
+rfgnsg,lnd__gp,,,RFGN 
+rfgnsg,rev__gp,,,RFGN 
+rfgnsg,lnd__cp,,,RFGN 
+rfgnsg,rev__cp,,,RFGN 
+rfgnsg_t_2007_2014,lnd_vrl,,,RFGN Landings 2007-2014
+rfgnsg_t_2007_2014,rv_vrll,,,RFGN Revenues 2007-2014
+rfgnsg_t_2015_2021,lnd_vrl,,,RFGN Landings 2015-2021
+rfgnsg_t_2015_2021,rv_vrll,,,RFGN Revenues 2015-2021
+rfgnsg_s_fl,lnd_vrl,,,RFGN Landings Florida
+rfgnsg_s_fl,rv_vrll,,,RFGN Revenues Florida
+rftsg,lnd_vrl,,,RFT 
+rftsg,rv_vrll,,,RFT 
+rftsg,lnd__rs,,,RFT 
+rftsg,rev__rs,,,RFT 
+rftsg,lnd__ms,,,RFT 
+rftsg,rev__ms,,,RFT 
+rftsg,lnd__ss,,,RFT 
+rftsg,rev__ss,,,RFT 
+rftsg,lnd__sg,,,RFT 
+rftsg,rev__sg,,,RFT 
+rftsg,lnd__dg,,,RFT 
+rftsg,rev__dg,,,RFT 
+rftsg,lnd__tf,,,RFT 
+rftsg,rev__tf,,,RFT 
+rftsg,lnd__ja,,,RFT 
+rftsg,rev__ja,,,RFT 
+rftsg,lnd__tr,,,RFT 
+rftsg,rev__tr,,,RFT 
+rftsg,lnd__gp,,,RFT 
+rftsg,rev__gp,,,RFT 
+rftsg,lnd__cp,,,RFT 
+rftsg,rev__cp,,,RFT 
+rftsg_t_2007_2014,lnd_vrl,,,RFT Landings 2007-2014
+rftsg_t_2007_2014,rv_vrll,,,RFT Revenues 2007-2014
+rftsg_t_2015_2021,lnd_vrl,,,RFT Landings 2015-2021
+rftsg_t_2015_2021,rv_vrll,,,RFT Revenues 2015-2021
+rftsg_s_fl,lnd_vrl,,,RFT Landings Florida
+rftsg_s_fl,rv_vrll,,,RFT Revenues Florida
+rftsg_s_al,lnd_vrl,,,RFT Landings Alabama
+rftsg_s_al,rv_vrll,,,RFT Revenues Alabama
+rftsg_s_la,lnd_vrl,,,RFT Landings Louisiana
+rftsg_s_la,rv_vrll,,,RFT Revenues Louisiana
+hmssg,lnd_vrl,,,HMSSG Overall Landings
+hmssg,rv_vrll,,,HMSSG Overall Revenues
+hmssg_s_fl,lnd_vrl,,,HMSSG Landings Florida
+hmssg_s_fl,rv_vrll,,,HMSSG Revenues Florida
+hmssg_s_la,lnd_vrl,,,HMSSG Landings Louisiana
+hmssg_s_la,rv_vrll,,,HMSSG Revenues Louisiana

@@ -1,5 +1,5 @@
 from fisheries.fip.fisheries.mainreport import main_report
-from fisheries.fip.templates.reef.gillnet import reef_gillnet_template, javascript, csv_text
+from fisheries.fip.templates.reef.gillnet import reef_gillnet_template, reef_gillnet_csv
 
 
 # 'RFGNSG' Reef fish fisheries – gill net (statistical grid)
@@ -40,11 +40,13 @@ values = {
 }
 
 
-def report(feature):
+def report(feature, report_type):
     return main_report(
         feature,
+        report_type,
         values=values,
         title='Reef fish fisheries - gill net',
         type="reef fisheries ",
         template=reef_gillnet_template,
+        csv_template=reef_gillnet_csv,
     )

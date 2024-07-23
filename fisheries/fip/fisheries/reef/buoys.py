@@ -1,5 +1,5 @@
 from fisheries.fip.fisheries.mainreport import main_report
-from fisheries.fip.templates.reef.buoys import reef_buoys_template, javascript, csv_text
+from fisheries.fip.templates.reef.buoys import reef_buoys_template, reef_buoys_csv
 
 
 # 'RFBSG' Reef fish fisheries – buoys (statistical grid)
@@ -40,11 +40,13 @@ values = {
 }
 
 
-def report(feature):
+def report(feature, report_type):
     return main_report(
         feature,
+        report_type,
         values=values,
         title='Reef fish fisheries - buoys',
         type="reef fisheries ",
         template=reef_buoys_template,
+        csv_template=reef_buoys_csv,
     )

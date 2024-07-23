@@ -1,10 +1,10 @@
-# FIXME: Move csvText and JS into Map.jsx and rebuild ?
 reef_trolling_template = """
 <p style="text-align: center; font-size: 20px; font-weight: bold;">Reef fish fisheries - trolling</p>
+<p style="display: flex; justify-content: center; align-items: center;">Download <button style="margin-left: 5px; font-size: 8px;" id="download-csv" onclick='window.fipCsvReport({feature},"trolling");'>CSV</button></p>
 <br/>
 <table class="table fip-table">
   <thead>
-    <tr><th class="col-1"><b>{name}</b></th><th><b>Landings</b></th><th><b>Revenues</b></th></tr>
+    <tr><th class="col-1"><b>{name}</b></th><th><b>Landings (pounds)</b></th><th><b>Revenues (USD)</b></th></tr>
   </thead>
   <tbody>
     <tr><th class="col-1"><b>Total</b></td><td>{RFTSG_lnd_vrl}</td><td>{RFTSG_rv_vrll}</td></tr>
@@ -33,58 +33,32 @@ reef_trolling_template = """
   </tbody>
 </table>
 
-<br/>
-<span class="text-center" style="display:none">
-  Download <button id="download-csv" onclick="{javascript}">CSV</button>
-  <!--<a href="" style="color: grey; pointer-events: none; cursor: default;">PDF</a>-->
-</span>
-
 <!-- {comments} -->
-
-<div id="csvText" style="display: none">{csv_text}</div>
-"""
-
-javascript = """
-  csvText = document.getElementById('csvText').innerText;
-  console.log(csvText);
-  var blob = new Blob([csvText], { type: 'text/csv;charset=utf-8;' });
-  
-  var downloadLink = document.createElement('a');
-  downloadLink.href = URL.createObjectURL(blob);
-  downloadLink.setAttribute('download', 'report.csv');
-  
-  document.body.appendChild(downloadLink);
-  downloadLink.click();
-  
-  document.body.removeChild(downloadLink);
 """
 
 
-# FIXME: Update for Reef fish - trolling
-csv_text = """
-Reef Fish Landings and Revenues (2007-2021),,
-,,
-{name},Landings,Revenues
-Total,{tot_land},{tot_rev}
-Species,,
-Mid-depth snappers,{RF10_land_e_MS},{RF10_rev_e_MS}
-   (of which Red Snapper),({RF10_land_e_RS}),({RF10_rev_e_RS})
-Shallow-water snappers,{RF10_land_e_SS},{RF10_rev_e_SS}
-Shallow-water groupers,{RF10_land_e_SG},{RF10_rev_e_SG}
-Deep-water groupers,{RF10_land_e_DG},{RF10_rev_e_DG}
-Tilefishes,{RF10_land_e_TF},{RF10_rev_e_TF}
-Jacks,{RF10_land_e_JA},{RF10_rev_e_JA}
-Triggerfishes,{RF10_land_e_TR},{RF10_rev_e_TR}
-Grunts and porgies,{RF10_land_e_GP},{RF10_rev_e_GP}
-Coastal pelagic,{RF10_land_e_CP},{RF10_rev_e_CP}
-Other species,{other_species_land},{other_species_rev}
+reef_trolling_csv = """,Landings (pounds),Revenues (USD)
+Total,{RFTSG_lnd_vrl},{RFTSG_rv_vrll}
+
+Red Snapper,{RFTSG_lnd__rs},{RFTSG_rev__rs}
+Mid-depth snapper group,{RFTSG_lnd__ms},{RFTSG_rev__ms}
+Shallow-water snapper group,{RFTSG_lnd__ss},{RFTSG_rev__ss}
+Shallow-water grouper group,{RFTSG_lnd__sg},{RFTSG_rev__sg}
+Deep-water grouper group,{RFTSG_lnd__dg},{RFTSG_rev__dg}
+Tilefishes group,{RFTSG_lnd__tf},{RFTSG_rev__tf}
+Jacks group,{RFTSG_lnd__ja},{RFTSG_rev__ja}
+Triggerfishes group,{RFTSG_lnd__tr},{RFTSG_rev__tr}
+Grunts and porgies group,{RFTSG_lnd__gp},{RFTSG_rev__gp}
+Coastal pelagics group,{RFTSG_lnd__cp},{RFTSG_rev__cp}
+
 Time period,,
-2007-2014,{RF10_land_t_2007_2014},{RF10_rev_t_2007_2014}
-2015-2021,{RF10_land_t_2015_2021},{RF10_rev_t_2015_2021}
+2007-2014,{RFTSG_t_2007_2014_lnd_vrl},{RFTSG_t_2007_2014_rv_vrll}
+2015-2021,{RFTSG_t_2015_2021_lnd_vrl},{RFTSG_t_2015_2021_rv_vrll}
+
 State,,
-Florida,{RF10_land_s_FL},{RF10_rev_s_FL}
-Alabama,{RF10_land_s_AL},{RF10_rev_s_AL}
-Mississippi,{RF10_land_s_MS},{RF10_rev_s_MS}
-Louisiana,{RF10_land_s_LA},{RF10_rev_s_LA}
-Texas,{RF10_land_s_TX},{RF10_rev_s_TX}
+Florida,{RFTSG_s_FL_lnd_vrl},{RFTSG_s_FL_rv_vrll}
+Alabama,{RFTSG_s_AL_lnd_vrl},{RFTSG_s_AL_rv_vrll}
+Mississippi,Insufficient data for Mississippi
+Louisiana,{RFTSG_s_LA_lnd_vrl},{RFTSG_s_LA_rv_vrll}
+Texas,Insufficient data for Texas
 """

@@ -1,10 +1,10 @@
-# FIXME: Move csvText and JS into Map.jsx and rebuild ?
 shrimp_template = """
 <p style="text-align: center; font-size: 20px; font-weight: bold;">Shrimp fisheries</p>
+<p style="display: flex; justify-content: center; align-items: center;">Download <button style="margin-left: 5px; font-size: 8px;" id="download-csv" onclick='window.fipCsvReport({feature},"shrimp");'>CSV</button></p>
 <br/>
 <table class="table fip-table">
   <thead>
-    <tr><th class="col-1"><b>{name}</b></th><th><b>Landings</b></th><th><b>Revenues</b></th></tr>
+    <tr><th class="col-1"><b>{name}</b></th><th><b>Landings (pounds)</b></th><th><b>Revenues (USD)</b></th></tr>
   </thead>
   <tbody>
     <tr><th class="col-1"><b>Total</b></td><td>{tot_land}</td><td>{tot_rev}</td></tr>
@@ -33,39 +33,42 @@ shrimp_template = """
   </tbody>
 </table>
 
-<br/>
-<span class="text-center" style="display:none">
-  Download <button id="download-csv" onclick="{javascript}">CSV</button>
-  <!--<a href="" style="color: grey; pointer-events: none; cursor: default;">PDF</a>-->
-</span>
-
 <!-- {comments} -->
-
-<div id="csvText" style="display: none">{csv_text}</div>
-"""
-
-javascript = """
-  csvText = document.getElementById('csvText').innerText;
-  console.log(csvText);
-  var blob = new Blob([csvText], { type: 'text/csv;charset=utf-8;' });
-  
-  var downloadLink = document.createElement('a');
-  downloadLink.href = URL.createObjectURL(blob);
-  downloadLink.setAttribute('download', 'report.csv');
-  
-  document.body.appendChild(downloadLink);
-  downloadLink.click();
-  
-  document.body.removeChild(downloadLink);
 """
 
 
-csv_text = """
-Reef Fish Landings and Revenues (2007-2021),,
-,,
-{name},Landings,Revenues
+# Filename: Shrimp Fish Landings and Revenues (2007-2021),, \n ,,
+#           or {name} (otherwise unused)
+shrimp_csv = reef_csv = """,Landings (pounds),Revenues (USD)
 Total,{tot_land},{tot_rev}
 Species,,
+Brown shrimp,{SF10_land_e_BS},{SF10_rev_e_BS}
+Pink shrimp,{SF10_land_e_PS},{SF10_rev_e_PS}
+Royal red shrimp,{SF10_land_e_RRS},{SF10_rev_e_RRS}
+Rock shrimp,{SF10_land_e_RS},{SF10_rev_e_RS}
+Seabobs,{SF10_land_e_S},{SF10_rev_e_S}
+Trachypenaeus,{SF10_land_e_T},{SF10_rev_e_T}
+White shrimp,{SF10_land_e_WS},{SF10_rev_e_WS}
+Other species,{other_species_land},{other_species_rev}
+
+Time period,,
+2007-2014,{SF10_land_t_2007_2014},{SF10_rev_t_2007_2014}
+2015-2021,{SF10_land_t_2015_2021},{SF10_rev_t_2015_2021}
+
+State,,
+Florida,{SF10_land_s_FL},{SF10_rev_s_FL}
+Alabama,{SF10_land_s_AL},{SF10_rev_s_AL}
+Mississippi,{SF10_land_s_MS},{SF10_rev_s_MS}
+Louisiana,{SF10_land_s_LA},{SF10_rev_s_LA}
+Texas,{SF10_land_s_TX},{SF10_rev_s_TX}
+"""
+
+
+
+# ...
+reef_csv = """
+Species,Landings,Revenues
+Total,{tot_land},{tot_rev}
 Mid-depth snappers,{RF10_land_e_MS},{RF10_rev_e_MS}
    (of which Red Snapper),({RF10_land_e_RS}),({RF10_rev_e_RS})
 Shallow-water snappers,{RF10_land_e_SS},{RF10_rev_e_SS}
@@ -87,37 +90,3 @@ Mississippi,{RF10_land_s_MS},{RF10_rev_s_MS}
 Louisiana,{RF10_land_s_LA},{RF10_rev_s_LA}
 Texas,{RF10_land_s_TX},{RF10_rev_s_TX}
 """
-
-
-# shrimp_names = {
-#     'SF10_land_e_BS': "Brown shrimp",
-#     'SF10_land_e_PS': "Pink shrimp",
-#     'SF10_land_e_RRS': "Royal red shrimp",
-#     'SF10_land_e_RS': "Rock shrimp",
-#     'SF10_land_e_S': "Seabobs",
-#     'SF10_land_e_T': "Trachypenaeus",
-#     'SF10_land_e_WS': "White shrimp",
-# #    'SF10_land_overall': "",
-#     'SF10_land_s_AL': "Alabama",
-#     'SF10_land_s_FL': "Florida",
-#     'SF10_land_s_LA': "Louisiana",
-#     'SF10_land_s_MS': "Mississippi",
-#     'SF10_land_s_TX': "Texas",
-#     'SF10_land_t_2007_2014': "2007-2014",
-#     'SF10_land_t_2015_2021': "2015-2021",
-#     'SF10_rev_e_BS': "",
-#     'SF10_rev_e_PS': "",
-#     'SF10_rev_e_RRS': "",
-#     'SF10_rev_e_RS': "",
-#     'SF10_rev_e_S': "",
-#     'SF10_rev_e_T': "",
-#     'SF10_rev_e_WS': "",
-# #    'SF10_rev_overall': "",
-#     'SF10_rev_s_AL': "",
-#     'SF10_rev_s_FL': "",
-#     'SF10_rev_s_LA': "",
-#     'SF10_rev_s_MS': "",
-#     'SF10_rev_s_TX': "",
-#     'SF10_rev_t_2007_2014': "",
-#     'SF10_rev_t_2015_2021': "",
-# }

@@ -1,4 +1,5 @@
 import logging
+from collections import OrderedDict
 
 from pygeoapi.process.base import BaseProcessor, ProcessorExecuteError
 
@@ -8,9 +9,24 @@ from ..fisheries.reef.diving import report as diving_report
 from ..fisheries.reef.buoys import report as buoys_report
 from ..fisheries.reef.gillnet import report as gill_net_report
 from ..fisheries.reef.trolling import report as trolling_report
+from ..fisheries.reef.headboat import report as headboat_report
 
 
 LOGGER = logging.getLogger(__name__)
+
+CSV = 'csv'
+HTML = 'html'
+
+# Dictionaries retain order since Python 3.7
+FISHERY = {
+    'shrimp': shrimp_report,
+    'reef': reef_report,
+    'diving': diving_report,
+    'buoys': buoys_report,
+    'gill_net': gill_net_report,
+    'trolling': trolling_report,
+    'headboat': headboat_report,
+}
 
 
 # Process metadata and description
@@ -46,16 +62,28 @@ PROCESS_METADATA = {
         },
         'fishery': {
             'title': 'Fishery',
-            'description': 'Specify "reef" or "shrimp" fisheries (default "None" returns both)',
+            'description': "Specify 'shrimp', 'reef', 'diving', 'buoys', 'gill_net', 'trolling' or 'headboat' (default if not specified returns all)",
             'schema': {
                 'type': 'string',
-                'enum': ['reef', 'shrimp']
+                'enum': FISHERY.keys()
             },
             'minOccurs': 0,
             'maxOccurs': 1,
             'metadata': None,
             'keywords': ['fishery',]
-        },      
+        },
+        'format': {
+            'title': 'File format determining report type',
+            'description': "Specify 'html' or 'csv' (default 'html'). When choosing 'csv' you must also specify a single fishery",  # add 'xlsx' and 'pdf'
+            'schema': {
+                'type': 'string',
+                'enum': [HTML, CSV]
+            },
+            'minOccurs': 0,
+            'maxOccurs': 1,
+            'metadata': None,
+            'keywords': ['format',]
+        },            
     },
     'outputs': {
         'report': {
@@ -90,32 +118,38 @@ class ReportProcessor(BaseProcessor):
         super().__init__(processor_def, PROCESS_METADATA)
 
     def execute(self, data):
-        # FIXME: report_type: 'json', 'html', 'csv', 'pdf'
         mimetype = 'application/json'
         feature = data.get('feature')
-        #fishery = data.get('fishery')
+        fishery = data.get('fishery')
+        report_type = data.get('format', HTML)
+        report_func = FISHERY[fishery] if fishery is not None else None
 
         if feature is None:
             raise ProcessorExecuteError('Cannot process without GeoJSON feature input data')
 
-        '''
-        if fishery == 'shrimp':
-            LOGGER.debug('Generating report for shrimp fisheries')
-            outputs = shrimp_report(feature)
+        if report_type == CSV:
+            outputs = {'Report': (
+                report_func(feature, report_type)['Report']
+            )}
         else:
-            LOGGER.debug('Generating report for reef fisheries')
-            outputs = shrimp_report(feature)
-            #outputs = reef_report(feature)
-        '''
-        outputs = {'Report': (
-            '<h2 class="text-center"><b>Landings and Revenues (2007-2021)</b></h2><br>'
-            + shrimp_report(feature)['Report']
-            + reef_report(feature)['Report']
-            + diving_report(feature)['Report']
-            + buoys_report(feature)['Report']
-            + gill_net_report(feature)['Report']
-            + trolling_report(feature)['Report']
-        )}
+            output = '<h2 class="text-center"><b>Landings and Revenues (2007-2021)</b></h2><br>'
+            for func in FISHERY.values():
+                output += func(feature, report_type)['Report']
+            
+            outputs = {'Report': output}
+
+            '''OLD (remove)
+            outputs = {'Report': (
+                '<h2 class="text-center"><b>Landings and Revenues (2007-2021)</b></h2><br>'
+                + shrimp_report(feature, report_type)['Report']
+                + reef_report(feature, report_type)['Report']
+                + diving_report(feature, report_type)['Report']
+                + buoys_report(feature, report_type)['Report']
+                + gill_net_report(feature, report_type)['Report']
+                + trolling_report(feature, report_type)['Report']
+                + headboat_report(feature)['Report']
+            )}
+            '''
 
         return mimetype, outputs
 
