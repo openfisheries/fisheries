@@ -1,188 +1,188 @@
-sfsg,lnd_vrl,,,SF Overall Landings
-sfsg,rv_vrll,,,SF Overall Revenues
-sfsg,lnd__bs,,,SF Landings Brown shrimp
-sfsg,rev__bs,,,SF Revenues Brown shrimp
-sfsg,lnd__ws,,,SF Landings White shrimp
-sfsg,rev__ws,,,SF Revenues White shrimp
-sfsg,land__s,,,SF Landings Seabobs
-sfsg,rev_e_s,,,SF Revenues Seabobs
-sfsg,lnd__rs,,,SF Landings Rock shrimp
-sfsg,rev__rs,,,SF Revenues Rock shrimp
-sfsg,land__t,,,SF Landings Trachypenaeus
-sfsg,rev_e_t,,,SF Revenues Trachypenaeus
-sfsg,lnd__ps,,,SF Landings Pink shrimp
-sfsg,rev__ps,,,SF Revenues Pink shrimp
-sfsg,ln__rrs,,,SF Landings Royal red shrimp
-sfsg,rv__rrs,,,SF Revenues Royal red shrimp
-sfsg_t_2007_2014,lnd_vrl,,,SF Landings 2007-2014
-sfsg_t_2007_2014,rv_vrll,,,SF Revenues 2007-2014
-sfsg_t_2015_2021,lnd_vrl,,,SF Landings 2015-2021
-sfsg_t_2015_2021,rv_vrll,,,SF Revenues 2015-2021
-sfsg_s_fl,lnd_vrl,,,SF Landings Florida
-sfsg_s_fl,rv_vrll,,,SF Revenues Florida
-sfsg_s_al,lnd_vrl,,,SF Landings Alabama
-sfsg_s_al,rv_vrll,,,SF Revenues Alabama
-sfsg_s_ms,lnd_vrl,,,SF Landings Mississippi
-sfsg_s_ms,rv_vrll,,,SF Revenues Mississippi
-sfsg_s_la,lnd_vrl,,,SF Landings Louisiana
-sfsg_s_la,rv_vrll,,,SF Revenues Louisiana
-sfsg_s_tx,lnd_vrl,,,SF Landings Texas
-sfsg_s_tx,rv_vrll,,,SF Revenues Texas
-rfsg,lnd_vrl,,,RF Overall Landings
-rfsg,rv_vrll,,,RF Overall Revenues
-rfsg,lnd__rs,,,RF Landings Red Snapper
-rfsg,rev__rs,,,RF Revenues Red Snapper
-rfsg,lnd__ms,,,RF Landings Mid-depth snapper group
-rfsg,rev__ms,,,RF Revenues Mid-depth snapper group
-rfsg,lnd__ss,,,RF Landings Shallow-water snapper group
-rfsg,rev__ss,,,RF Revenues Shallow-water snapper group
-rfsg,lnd__sg,,,RF Landings Shallow-water grouper group
-rfsg,rev__sg,,,RF Revenues Shallow-water grouper group
-rfsg,lnd__dg,,,RF Landings Deep-water grouper group
-rfsg,rev__dg,,,RF Revenues Deep-water grouper group
-rfsg,lnd__tf,,,RF Landings Tilefishes group
-rfsg,rev__tf,,,RF Revenues Tilefishes group
-rfsg,lnd__ja,,,RF Landings Jacks group
-rfsg,rev__ja,,,RF Revenues Jacks group
-rfsg,lnd__tr,,,RF Landings Triggerfishes group
-rfsg,rev__tr,,,RF Revenues Triggerfishes group
-rfsg,lnd__gp,,,RF Landings Grunts and porgies group
-rfsg,rev__gp,,,RF Revenues Grunts and porgies group
-rfsg,lnd__cp,,,RF Landings Coastal pelagics group
-rfsg,rev__cp,,,RF Revenues Coastal pelagics group
-rfsg_t_2007_2014,lnd_vrl,,,RF Landings 2007-2014
-rfsg_t_2007_2014,rv_vrll,,,RF Revenues 2007-2014
-rfsg_t_2015_2021,lnd_vrl,,,RF Landings 2015-2021
-rfsg_t_2015_2021,rv_vrll,,,RF Revenues 2015-2021
-rfsg_s_fl,lnd_vrl,,,RF Landings Florida
-rfsg_s_fl,rv_vrll,,,RF Revenues Florida
-rfsg_s_al,lnd_vrl,,,RF Landings Alabama
-rfsg_s_al,rv_vrll,,,RF Revenues Alabama
-rfsg_s_ms,lnd_vrl,,,RF Landings Mississippi
-rfsg_s_ms,rv_vrll,,,RF Revenues Mississippi
-rfsg_s_la,lnd_vrl,,,RF Landings Louisiana
-rfsg_s_la,rv_vrll,,,RF Revenues Louisiana
-rfsg_s_tx,lnd_vrl,,,RF Landings Texas
-rfsg_s_tx,rv_vrll,,,RF Revenues Texas
-rfdsg,lnd_vrl,,,RFD 
-rfdsg,rv_vrll,,,RFD 
-rfdsg,lnd__rs,,,RFD 
-rfdsg,rev__rs,,,RFD 
-rfdsg,lnd__ms,,,RFD 
-rfdsg,rev__ms,,,RFD 
-rfdsg,lnd__ss,,,RFD 
-rfdsg,rev__ss,,,RFD 
-rfdsg,lnd__sg,,,RFD 
-rfdsg,rev__sg,,,RFD 
-rfdsg,lnd__dg,,,RFD 
-rfdsg,rev__dg,,,RFD 
-rfdsg,lnd__tf,,,RFD 
-rfdsg,rev__tf,,,RFD 
-rfdsg,lnd__ja,,,RFD 
-rfdsg,rev__ja,,,RFD 
-rfdsg,lnd__tr,,,RFD 
-rfdsg,rev__tr,,,RFD 
-rfdsg,lnd__gp,,,RFD 
-rfdsg,rev__gp,,,RFD 
-rfdsg,lnd__cp,,,RFD 
-rfdsg,rev__cp,,,RFD 
-rfdsg_t_2007_2014,lnd_vrl,,,RFD Landings 2007-2014
-rfdsg_t_2007_2014,rv_vrll,,,RFD Revenues 2007-2014
-rfdsg_t_2015_2021,lnd_vrl,,,RFD Landings 2015-2021
-rfdsg_t_2015_2021,rv_vrll,,,RFD Revenues 2015-2021
-rfdsg_s_fl,lnd_vrl,,,RFD Landings Florida
-rfdsg_s_fl,rv_vrll,,,RFD Revenues Florida
-rfbsg,lnd_vrl,,,RFB 
-rfbsg,rv_vrll,,,RFB 
-rfbsg,lnd__rs,,,RFB 
-rfbsg,rev__rs,,,RFB 
-rfbsg,lnd__ms,,,RFB 
-rfbsg,rev__ms,,,RFB 
-rfbsg,lnd__ss,,,RFB 
-rfbsg,rev__ss,,,RFB 
-rfbsg,lnd__sg,,,RFB 
-rfbsg,rev__sg,,,RFB 
-rfbsg,lnd__dg,,,RFB 
-rfbsg,rev__dg,,,RFB 
-rfbsg,lnd__tf,,,RFB 
-rfbsg,rev__tf,,,RFB 
-rfbsg,lnd__ja,,,RFB 
-rfbsg,rev__ja,,,RFB 
-rfbsg,lnd__tr,,,RFB 
-rfbsg,rev__tr,,,RFB 
-rfbsg,lnd__gp,,,RFB 
-rfbsg,rev__gp,,,RFB 
-rfbsg,lnd__cp,,,RFB 
-rfbsg,rev__cp,,,RFB 
-rfbsg_t_2007_2014,lnd_vrl,,,RFB Landings 2007-2014
-rfbsg_t_2007_2014,rv_vrll,,,RFB Revenues 2007-2014
-rfbsg_t_2015_2021,lnd_vrl,,,RFB Landings 2015-2021
-rfbsg_t_2015_2021,rv_vrll,,,RFB Revenues 2015-2021
-rfbsg_s_fl,lnd_vrl,,,RFB Landings Florida
-rfbsg_s_fl,rv_vrll,,,RFB Revenues Florida
-rfgnsg,lnd_vrl,,,RFGN 
-rfgnsg,rv_vrll,,,RFGN 
-rfgnsg,lnd__rs,,,RFGN 
-rfgnsg,rev__rs,,,RFGN 
-rfgnsg,lnd__ms,,,RFGN 
-rfgnsg,rev__ms,,,RFGN 
-rfgnsg,lnd__ss,,,RFGN 
-rfgnsg,rev__ss,,,RFGN 
-rfgnsg,lnd__sg,,,RFGN 
-rfgnsg,rev__sg,,,RFGN 
-rfgnsg,lnd__dg,,,RFGN 
-rfgnsg,rev__dg,,,RFGN 
-rfgnsg,lnd__tf,,,RFGN 
-rfgnsg,rev__tf,,,RFGN 
-rfgnsg,lnd__ja,,,RFGN 
-rfgnsg,rev__ja,,,RFGN 
-rfgnsg,lnd__tr,,,RFGN 
-rfgnsg,rev__tr,,,RFGN 
-rfgnsg,lnd__gp,,,RFGN 
-rfgnsg,rev__gp,,,RFGN 
-rfgnsg,lnd__cp,,,RFGN 
-rfgnsg,rev__cp,,,RFGN 
-rfgnsg_t_2007_2014,lnd_vrl,,,RFGN Landings 2007-2014
-rfgnsg_t_2007_2014,rv_vrll,,,RFGN Revenues 2007-2014
-rfgnsg_t_2015_2021,lnd_vrl,,,RFGN Landings 2015-2021
-rfgnsg_t_2015_2021,rv_vrll,,,RFGN Revenues 2015-2021
-rfgnsg_s_fl,lnd_vrl,,,RFGN Landings Florida
-rfgnsg_s_fl,rv_vrll,,,RFGN Revenues Florida
-rftsg,lnd_vrl,,,RFT 
-rftsg,rv_vrll,,,RFT 
-rftsg,lnd__rs,,,RFT 
-rftsg,rev__rs,,,RFT 
-rftsg,lnd__ms,,,RFT 
-rftsg,rev__ms,,,RFT 
-rftsg,lnd__ss,,,RFT 
-rftsg,rev__ss,,,RFT 
-rftsg,lnd__sg,,,RFT 
-rftsg,rev__sg,,,RFT 
-rftsg,lnd__dg,,,RFT 
-rftsg,rev__dg,,,RFT 
-rftsg,lnd__tf,,,RFT 
-rftsg,rev__tf,,,RFT 
-rftsg,lnd__ja,,,RFT 
-rftsg,rev__ja,,,RFT 
-rftsg,lnd__tr,,,RFT 
-rftsg,rev__tr,,,RFT 
-rftsg,lnd__gp,,,RFT 
-rftsg,rev__gp,,,RFT 
-rftsg,lnd__cp,,,RFT 
-rftsg,rev__cp,,,RFT 
-rftsg_t_2007_2014,lnd_vrl,,,RFT Landings 2007-2014
-rftsg_t_2007_2014,rv_vrll,,,RFT Revenues 2007-2014
-rftsg_t_2015_2021,lnd_vrl,,,RFT Landings 2015-2021
-rftsg_t_2015_2021,rv_vrll,,,RFT Revenues 2015-2021
-rftsg_s_fl,lnd_vrl,,,RFT Landings Florida
-rftsg_s_fl,rv_vrll,,,RFT Revenues Florida
-rftsg_s_al,lnd_vrl,,,RFT Landings Alabama
-rftsg_s_al,rv_vrll,,,RFT Revenues Alabama
-rftsg_s_la,lnd_vrl,,,RFT Landings Louisiana
-rftsg_s_la,rv_vrll,,,RFT Revenues Louisiana
-hmssg,lnd_vrl,,,HMSSG Overall Landings
-hmssg,rv_vrll,,,HMSSG Overall Revenues
-hmssg_s_fl,lnd_vrl,,,HMSSG Landings Florida
-hmssg_s_fl,rv_vrll,,,HMSSG Revenues Florida
-hmssg_s_la,lnd_vrl,,,HMSSG Landings Louisiana
-hmssg_s_la,rv_vrll,,,HMSSG Revenues Louisiana
+sfsg,lnd_vrl,,,sfsg__lnd_vrl Overall Landings (lbs)
+sfsg,rv_vrll,,,sfsg__rv_vrll Overall Revenues (USD)
+sfsg,lnd__bs,,,sfsg__lnd__bs Landings Brown shrimp (lbs)
+sfsg,rev__bs,,,sfsg__rev__bs Revenues Brown shrimp (USD)
+sfsg,lnd__ws,,,sfsg__lnd__ws Landings White shrimp (lbs)
+sfsg,rev__ws,,,sfsg__rev__ws Revenues White shrimp (USD)
+sfsg,land__s,,,sfsg__land__s Landings Seabobs (lbs)
+sfsg,rev_e_s,,,sfsg__rev_e_s Revenues Seabobs (USD)
+sfsg,lnd__rs,,,sfsg__lnd__rs Landings Rock shrimp (lbs)
+sfsg,rev__rs,,,sfsg__rev__rs Revenues Rock shrimp (USD)
+sfsg,land__t,,,sfsg__land__t Landings Trachypenaeus (lbs)
+sfsg,rev_e_t,,,sfsg__rev_e_t Revenues Trachypenaeus (USD)
+sfsg,lnd__ps,,,sfsg__lnd__ps Landings Pink shrimp (lbs)
+sfsg,rev__ps,,,sfsg__rev__ps Revenues Pink shrimp (USD)
+sfsg,ln__rrs,,,sfsg__ln__rrs Landings Royal red shrimp (lbs)
+sfsg,rv__rrs,,,sfsg__rv__rrs Revenues Royal red shrimp (USD)
+sfsg_t_2007_2014,lnd_vrl,,,sfsg_t_2007_2014__lnd_vrl Landings 2007-2014 (lbs)
+sfsg_t_2007_2014,rv_vrll,,,sfsg_t_2007_2014__rv_vrll Revenues 2007-2014 (USD)
+sfsg_t_2015_2021,lnd_vrl,,,sfsg_t_2015_2021__lnd_vrl Landings 2015-2021 (lbs)
+sfsg_t_2015_2021,rv_vrll,,,sfsg_t_2015_2021__rv_vrll Revenues 2015-2021 (USD)
+sfsg_s_fl,lnd_vrl,,,sfsg_s_fl__lnd_vrl Landings Florida (lbs)
+sfsg_s_fl,rv_vrll,,,sfsg_s_fl__rv_vrll Revenues Florida (USD)
+sfsg_s_al,lnd_vrl,,,sfsg_s_al__lnd_vrl Landings Alabama (lbs)
+sfsg_s_al,rv_vrll,,,sfsg_s_al__rv_vrll Revenues Alabama (USD)
+sfsg_s_ms,lnd_vrl,,,sfsg_s_ms__lnd_vrl Landings Mississippi (lbs)
+sfsg_s_ms,rv_vrll,,,sfsg_s_ms__rv_vrll Revenues Mississippi (USD)
+sfsg_s_la,lnd_vrl,,,sfsg_s_la__lnd_vrl Landings Louisiana (lbs)
+sfsg_s_la,rv_vrll,,,sfsg_s_la__rv_vrll Revenues Louisiana (USD)
+sfsg_s_tx,lnd_vrl,,,sfsg_s_tx__lnd_vrl Landings Texas (lbs)
+sfsg_s_tx,rv_vrll,,,sfsg_s_tx__rv_vrll Revenues Texas (USD)
+rfsg,lnd_vrl,,,rfsg__lnd_vrl Overall Landings (lbs)
+rfsg,rv_vrll,,,rfsg__rv_vrll Overall Revenues (USD)
+rfsg,lnd__rs,,,rfsg__lnd__rs Landings Red Snapper (lbs)
+rfsg,rev__rs,,,rfsg__rev__rs Revenues Red Snapper (USD)
+rfsg,lnd__ms,,,rfsg__lnd__ms Landings Mid-depth snapper group (lbs)
+rfsg,rev__ms,,,rfsg__rev__ms Revenues Mid-depth snapper group (USD)
+rfsg,lnd__ss,,,rfsg__lnd__ss Landings Shallow-water snapper group (lbs)
+rfsg,rev__ss,,,rfsg__rev__ss Revenues Shallow-water snapper group (USD)
+rfsg,lnd__sg,,,rfsg__lnd__sg Landings Shallow-water grouper group (lbs)
+rfsg,rev__sg,,,rfsg__rev__sg Revenues Shallow-water grouper group (USD)
+rfsg,lnd__dg,,,rfsg__lnd__dg Landings Deep-water grouper group (lbs)
+rfsg,rev__dg,,,rfsg__rev__dg Revenues Deep-water grouper group (USD)
+rfsg,lnd__tf,,,rfsg__lnd__tf Landings Tilefishes group (lbs)
+rfsg,rev__tf,,,rfsg__rev__tf Revenues Tilefishes group (USD)
+rfsg,lnd__ja,,,rfsg__lnd__ja Landings Jacks group (lbs)
+rfsg,rev__ja,,,rfsg__rev__ja Revenues Jacks group (USD)
+rfsg,lnd__tr,,,rfsg__lnd__tr Landings Triggerfishes group (lbs)
+rfsg,rev__tr,,,rfsg__rev__tr Revenues Triggerfishes group (USD)
+rfsg,lnd__gp,,,rfsg__lnd__gp Landings Grunts and porgies group (lbs)
+rfsg,rev__gp,,,rfsg__rev__gp Revenues Grunts and porgies group (USD)
+rfsg,lnd__cp,,,rfsg__lnd__cp Landings Coastal pelagics group (lbs)
+rfsg,rev__cp,,,rfsg__rev__cp Revenues Coastal pelagics group (USD)
+rfsg_t_2007_2014,lnd_vrl,,,rfsg_t_2007_2014__lnd_vrl Landings 2007-2014 (lbs)
+rfsg_t_2007_2014,rv_vrll,,,rfsg_t_2007_2014__rv_vrll Revenues 2007-2014 (USD)
+rfsg_t_2015_2021,lnd_vrl,,,rfsg_t_2015_2021__lnd_vrl Landings 2015-2021 (lbs)
+rfsg_t_2015_2021,rv_vrll,,,rfsg_t_2015_2021__rv_vrll Revenues 2015-2021 (USD)
+rfsg_s_fl,lnd_vrl,,,rfsg_s_fl__lnd_vrl Landings Florida (lbs)
+rfsg_s_fl,rv_vrll,,,rfsg_s_fl__rv_vrll Revenues Florida (USD)
+rfsg_s_al,lnd_vrl,,,rfsg_s_al__lnd_vrl Landings Alabama (lbs)
+rfsg_s_al,rv_vrll,,,rfsg_s_al__rv_vrll Revenues Alabama (USD)
+rfsg_s_ms,lnd_vrl,,,rfsg_s_ms__lnd_vrl Landings Mississippi (lbs)
+rfsg_s_ms,rv_vrll,,,rfsg_s_ms__rv_vrll Revenues Mississippi (USD)
+rfsg_s_la,lnd_vrl,,,rfsg_s_la__lnd_vrl Landings Louisiana (lbs)
+rfsg_s_la,rv_vrll,,,rfsg_s_la__rv_vrll Revenues Louisiana (USD)
+rfsg_s_tx,lnd_vrl,,,rfsg_s_tx__lnd_vrl Landings Texas (lbs)
+rfsg_s_tx,rv_vrll,,,rfsg_s_tx__rv_vrll Revenues Texas (USD)
+rfdsg,lnd_vrl,,,rfdsg__lnd_vrl Overall Landings (lbs)
+rfdsg,rv_vrll,,,rfdsg__rv_vrll Overall Revenues (USD)
+rfdsg,lnd__rs,,,rfdsg__lnd__rs Landings Red Snapper (lbs)
+rfdsg,rev__rs,,,rfdsg__rev__rs Revenues Red Snapper (USD)
+rfdsg,lnd__ms,,,rfdsg__lnd__ms Landings Mid-depth snapper group (lbs)
+rfdsg,rev__ms,,,rfdsg__rev__ms Revenues Mid-depth snapper group (USD)
+rfdsg,lnd__ss,,,rfdsg__lnd__ss Landings Shallow-water snapper group (lbs)
+rfdsg,rev__ss,,,rfdsg__rev__ss Revenues Shallow-water snapper group (USD)
+rfdsg,lnd__sg,,,rfdsg__lnd__sg Landings Shallow-water grouper group (lbs)
+rfdsg,rev__sg,,,rfdsg__rev__sg Revenues Shallow-water grouper group (USD)
+rfdsg,lnd__dg,,,rfdsg__lnd__dg Landings Deep-water grouper group (lbs)
+rfdsg,rev__dg,,,rfdsg__rev__dg Revenues Deep-water grouper group (USD)
+rfdsg,lnd__tf,,,rfdsg__lnd__tf Landings Tilefishes group (lbs)
+rfdsg,rev__tf,,,rfdsg__rev__tf Revenues Tilefishes group (USD)
+rfdsg,lnd__ja,,,rfdsg__lnd__ja Landings Jacks group (lbs)
+rfdsg,rev__ja,,,rfdsg__rev__ja Revenues Jacks group (USD)
+rfdsg,lnd__tr,,,rfdsg__lnd__tr Landings Triggerfishes group (lbs)
+rfdsg,rev__tr,,,rfdsg__rev__tr Revenues Triggerfishes group (USD)
+rfdsg,lnd__gp,,,rfdsg__lnd__gp Landings Grunts and porgies group (lbs)
+rfdsg,rev__gp,,,rfdsg__rev__gp Revenues Grunts and porgies group (USD)
+rfdsg,lnd__cp,,,rfdsg__lnd__cp Landings Coastal pelagics group (lbs)
+rfdsg,rev__cp,,,rfdsg__rev__cp Revenues Coastal pelagics group (USD)
+rfdsg_t_2007_2014,lnd_vrl,,,rfdsg_t_2007_2014__lnd_vrl Landings 2007-2014 (lbs)
+rfdsg_t_2007_2014,rv_vrll,,,rfdsg_t_2007_2014__rv_vrll Revenues 2007-2014 (USD)
+rfdsg_t_2015_2021,lnd_vrl,,,rfdsg_t_2015_2021__lnd_vrl Landings 2015-2021 (lbs)
+rfdsg_t_2015_2021,rv_vrll,,,rfdsg_t_2015_2021__rv_vrll Revenues 2015-2021 (USD)
+rfdsg_s_fl,lnd_vrl,,,rfdsg_s_fl__lnd_vrl Landings Florida (lbs)
+rfdsg_s_fl,rv_vrll,,,rfdsg_s_fl__rv_vrll Revenues Florida (USD)
+rfbsg,lnd_vrl,,,rfbsg__lnd_vrl Overall Landings (lbs)
+rfbsg,rv_vrll,,,rfbsg__rv_vrll Overall Revenues (USD)
+rfbsg,lnd__rs,,,rfbsg__lnd__rs Landings Red Snapper (lbs)
+rfbsg,rev__rs,,,rfbsg__rev__rs Revenues Red Snapper (USD)
+rfbsg,lnd__ms,,,rfbsg__lnd__ms Landings Mid-depth snapper group (lbs)
+rfbsg,rev__ms,,,rfbsg__rev__ms Revenues Mid-depth snapper group (USD)
+rfbsg,lnd__ss,,,rfbsg__lnd__ss Landings Shallow-water snapper group (lbs)
+rfbsg,rev__ss,,,rfbsg__rev__ss Revenues Shallow-water snapper group (USD)
+rfbsg,lnd__sg,,,rfbsg__lnd__sg Landings Shallow-water grouper group (lbs)
+rfbsg,rev__sg,,,rfbsg__rev__sg Revenues Shallow-water grouper group (USD)
+rfbsg,lnd__dg,,,rfbsg__lnd__dg Landings Deep-water grouper group (lbs)
+rfbsg,rev__dg,,,rfbsg__rev__dg Revenues Deep-water grouper group (USD)
+rfbsg,lnd__tf,,,rfbsg__lnd__tf -Landings Tilefishes group (lbs)
+rfbsg,rev__tf,,,rfbsg__rev__tf -Revenues Tilefishes group (USD)
+rfbsg,lnd__ja,,,rfbsg__lnd__ja -Landings Jacks group (lbs)
+rfbsg,rev__ja,,,rfbsg__rev__ja -Revenues Jacks group (USD)
+rfbsg,lnd__tr,,,rfbsg__lnd__tr Landings Triggerfishes group (lbs)
+rfbsg,rev__tr,,,rfbsg__rev__tr Revenues Triggerfishes group (USD)
+rfbsg,lnd__gp,,,rfbsg__lnd__gp Landings Grunts and porgies group (lbs)
+rfbsg,rev__gp,,,rfbsg__rev__gp Revenues Grunts and porgies group (USD)
+rfbsg,lnd__cp,,,rfbsg__lnd__cp Landings Coastal pelagics group (lbs)
+rfbsg,rev__cp,,,rfbsg__rev__cp Revenues Coastal pelagics group (USD)
+rfbsg_t_2007_2014,lnd_vrl,,,rfbsg_t_2007_2014__lnd_vrl Landings 2007-2014 (lbs)
+rfbsg_t_2007_2014,rv_vrll,,,rfbsg_t_2007_2014__rv_vrll Revenues 2007-2014 (USD)
+rfbsg_t_2015_2021,lnd_vrl,,,rfbsg_t_2015_2021__lnd_vrl Landings 2015-2021 (lbs)
+rfbsg_t_2015_2021,rv_vrll,,,rfbsg_t_2015_2021__rv_vrll Revenues 2015-2021 (USD)
+rfbsg_s_fl,lnd_vrl,,,rfbsg_s_fl__lnd_vrl Landings Florida (lbs)
+rfbsg_s_fl,rv_vrll,,,rfbsg_s_fl__rv_vrll Revenues Florida (USD)
+rfgnsg,lnd_vrl,,,rfgnsg__lnd_vrl Overall Landings (lbs)
+rfgnsg,rv_vrll,,,rfgnsg__rv_vrll Overall Revenues (USD)
+rfgnsg,lnd__rs,,,rfgnsg__lnd__rs -Landings Red Snapper (lbs)
+rfgnsg,rev__rs,,,rfgnsg__rev__rs -Revenues Red Snapper (USD)
+rfgnsg,lnd__ms,,,rfgnsg__lnd__ms -Landings Mid-depth snapper group (lbs)
+rfgnsg,rev__ms,,,rfgnsg__rev__ms -Revenues Mid-depth snapper group (USD)
+rfgnsg,lnd__ss,,,rfgnsg__lnd__ss -Landings Shallow-water snapper group (lbs)
+rfgnsg,rev__ss,,,rfgnsg__rev__ss -Revenues Shallow-water snapper group (USD)
+rfgnsg,lnd__sg,,,rfgnsg__lnd__sg -Landings Shallow-water grouper group (lbs)
+rfgnsg,rev__sg,,,rfgnsg__rev__sg -Revenues Shallow-water grouper group (USD)
+rfgnsg,lnd__dg,,,rfgnsg__lnd__dg -Landings Deep-water grouper group (lbs)
+rfgnsg,rev__dg,,,rfgnsg__rev__dg -Revenues Deep-water grouper group (USD)
+rfgnsg,lnd__tf,,,rfgnsg__lnd__tf -Landings Tilefishes group (lbs)
+rfgnsg,rev__tf,,,rfgnsg__rev__tf -Revenues Tilefishes group (USD)
+rfgnsg,lnd__ja,,,rfgnsg__lnd__ja Landings Jacks group (lbs)
+rfgnsg,rev__ja,,,rfgnsg__rev__ja Revenues Jacks group (USD)
+rfgnsg,lnd__tr,,,rfgnsg__lnd__tr -Landings Triggerfishes group (lbs)
+rfgnsg,rev__tr,,,rfgnsg__rev__tr -Revenues Triggerfishes group (USD)
+rfgnsg,lnd__gp,,,rfgnsg__lnd__gp Landings Grunts and porgies group (lbs)
+rfgnsg,rev__gp,,,rfgnsg__rev__gp Revenues Grunts and porgies group (USD)
+rfgnsg,lnd__cp,,,rfgnsg__lnd__cp Landings Coastal pelagics group (lbs)
+rfgnsg,rev__cp,,,rfgnsg__rev__cp Revenues Coastal pelagics group (USD)
+rfgnsg_t_2007_2014,lnd_vrl,,,rfgnsg_t_2007_2014__lnd_vrl Landings 2007-2014 (lbs)
+rfgnsg_t_2007_2014,rv_vrll,,,rfgnsg_t_2007_2014__rv_vrll Revenues 2007-2014 (USD)
+rfgnsg_t_2015_2021,lnd_vrl,,,rfgnsg_t_2015_2021__lnd_vrl Landings 2015-2021 (lbs)
+rfgnsg_t_2015_2021,rv_vrll,,,rfgnsg_t_2015_2021__rv_vrll Revenues 2015-2021 (USD)
+rfgnsg_s_fl,lnd_vrl,,,rfgnsg_s_fl__lnd_vrl Landings Florida (lbs)
+rfgnsg_s_fl,rv_vrll,,,rfgnsg_s_fl__rv_vrll Revenues Florida (USD)
+rftsg,lnd_vrl,,,rftsg__lnd_vrl Overall Landings (lbs)
+rftsg,rv_vrll,,,rftsg__rv_vrll Overall Revenues (USD)
+rftsg,lnd__rs,,,rftsg__lnd__rs Landings Red Snapper (lbs)
+rftsg,rev__rs,,,rftsg__rev__rs Revenues Red Snapper (USD)
+rftsg,lnd__ms,,,rftsg__lnd__ms Landings Mid-depth snapper group (lbs)
+rftsg,rev__ms,,,rftsg__rev__ms Revenues Mid-depth snapper group (USD)
+rftsg,lnd__ss,,,rftsg__lnd__ss Landings Shallow-water snapper group (lbs)
+rftsg,rev__ss,,,rftsg__rev__ss Revenues Shallow-water snapper group (USD)
+rftsg,lnd__sg,,,rftsg__lnd__sg Landings Shallow-water grouper group (lbs)
+rftsg,rev__sg,,,rftsg__rev__sg Revenues Shallow-water grouper group (USD)
+rftsg,lnd__dg,,,rftsg__lnd__dg Landings Deep-water grouper group (lbs)
+rftsg,rev__dg,,,rftsg__rev__dg Revenues Deep-water grouper group (USD)
+rftsg,lnd__tf,,,rftsg__lnd__tf Landings Tilefishes group (lbs)
+rftsg,rev__tf,,,rftsg__rev__tf Revenues Tilefishes group (USD)
+rftsg,lnd__ja,,,rftsg__lnd__ja Landings Jacks group (lbs)
+rftsg,rev__ja,,,rftsg__rev__ja Revenues Jacks group (USD)
+rftsg,lnd__tr,,,rftsg__lnd__tr Landings Triggerfishes group (lbs)
+rftsg,rev__tr,,,rftsg__rev__tr Revenues Triggerfishes group (USD)
+rftsg,lnd__gp,,,rftsg__lnd__gp Landings Grunts and porgies group (lbs)
+rftsg,rev__gp,,,rftsg__rev__gp Revenues Grunts and porgies group (USD)
+rftsg,lnd__cp,,,rftsg__lnd__cp Landings Coastal pelagics group (lbs)
+rftsg,rev__cp,,,rftsg__rev__cp Revenues Coastal pelagics group (USD)
+rftsg_t_2007_2014,lnd_vrl,,,rftsg_t_2007_2014__lnd_vrl Landings 2007-2014 (lbs)
+rftsg_t_2007_2014,rv_vrll,,,rftsg_t_2007_2014__rv_vrll Revenues 2007-2014 (USD)
+rftsg_t_2015_2021,lnd_vrl,,,rftsg_t_2015_2021__lnd_vrl Landings 2015-2021 (lbs)
+rftsg_t_2015_2021,rv_vrll,,,rftsg_t_2015_2021__rv_vrll Revenues 2015-2021 (USD)
+rftsg_s_fl,lnd_vrl,,,rftsg_s_fl__lnd_vrl Landings Florida (lbs)
+rftsg_s_fl,rv_vrll,,,rftsg_s_fl__rv_vrll Revenues Florida (USD)
+rftsg_s_al,lnd_vrl,,,rftsg_s_al__lnd_vrl Landings Alabama (lbs)
+rftsg_s_al,rv_vrll,,,rftsg_s_al__rv_vrll Revenues Alabama (USD)
+rftsg_s_la,lnd_vrl,,,rftsg_s_la__lnd_vrl Landings Louisiana (lbs)
+rftsg_s_la,rv_vrll,,,rftsg_s_la__rv_vrll Revenues Louisiana (USD)
+hmssg,lnd_vrl,,,hmssg__lnd_vrl Overall Landings (lbs)
+hmssg,rv_vrll,,,hmssg__rv_vrll Overall Revenues (USD)
+hmssg_s_fl,lnd_vrl,,,hmssg_s_fl__lnd_vrl Landings Florida (lbs)
+hmssg_s_fl,rv_vrll,,,hmssg_s_fl__rv_vrll Revenues Florida (USD)
+hmssg_s_la,lnd_vrl,,,hmssg_s_la__lnd_vrl Landings Louisiana (lbs)
+hmssg_s_la,rv_vrll,,,hmssg_s_la__rv_vrll Revenues Louisiana (USD)
