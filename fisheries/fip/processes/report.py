@@ -28,6 +28,7 @@ FISHERY = {
     'headboat': headboat_report,
 }
 
+FISHERY_KEYS = FISHERY.keys()  # requires eager evaluation (see FISHERY_KEYS usage below)
 
 # Process metadata and description
 PROCESS_METADATA = {
@@ -65,7 +66,7 @@ PROCESS_METADATA = {
             'description': "Specify 'shrimp', 'reef', 'diving', 'buoys', 'gill_net', 'trolling' or 'headboat' (default if not specified returns all)",
             'schema': {
                 'type': 'string',
-                'enum': FISHERY.keys()
+                'enum': FISHERY_KEYS,  # Cannot eval `FISHERY.keys()` here, causes pygeoapi: "TypeError: cannot pickle 'dict_keys' object"
             },
             'minOccurs': 0,
             'maxOccurs': 1,
