@@ -1,7 +1,8 @@
 Click>=7.0
 geoalchemy2
+openpyxl
 psycopg2-binary
 pyproj
 shapely
 sqlalchemy
-reportlab
+#reportlab

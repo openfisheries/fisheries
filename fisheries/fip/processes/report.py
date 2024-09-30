@@ -11,11 +11,14 @@ from ..fisheries.reef.gillnet import report as gill_net_report
 from ..fisheries.reef.trolling import report as trolling_report
 from ..fisheries.reef.headboat import report as headboat_report
 
+from ..format.excel import return_xlsx
+
 
 LOGGER = logging.getLogger(__name__)
 
 CSV = 'csv'
 HTML = 'html'
+XLSX = 'xlsx'
 
 # Dictionaries retain order since Python 3.7
 FISHERY = {
@@ -79,7 +82,7 @@ PROCESS_METADATA = {
             'description': "Specify 'html' or 'csv' (default 'html'). When choosing 'csv' you must also specify a single fishery",  # add 'xlsx' and 'pdf'
             'schema': {
                 'type': 'string',
-                'enum': [HTML, CSV]
+                'enum': [CSV, HTML, XLSX]
             },
             'minOccurs': 0,
             'maxOccurs': 1,
@@ -129,10 +132,13 @@ class ReportProcessor(BaseProcessor):
         if feature is None:
             raise ProcessorExecuteError('Cannot process without GeoJSON feature input data')
 
-        if report_type == CSV:
+        if fishery and report_type == CSV:
             outputs = {'Report': (
                 report_func(feature, report_type)['Report']
             )}
+        elif fishery is None and report_type == XLSX:
+            #mimetype = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            outputs = return_xlsx(feature)
         else:
             output = '<h2 class="text-center"><b>Landings and Revenues (2007-2021)</b></h2><br>'
             for func in FISHERY.values():
