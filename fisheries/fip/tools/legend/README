@@ -1,3 +1,8 @@
 Important: This script generates a CSV input file required in the `fip-data` repo
+by calculating the min and max values for each required layer from the database.
+
+create_vector_layers_csv.py 
 
 IMPORTANT: See fip-data/legends/vector/README
+
+The headboat layer wasn't in the original list so this was calculated separately later.

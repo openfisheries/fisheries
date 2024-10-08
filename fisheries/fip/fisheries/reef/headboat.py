@@ -77,7 +77,7 @@ def report(feature, report_type):
 
     if all(v == '-' for v in report_values.values()):
         content = nodata_template.format(
-            title='Head Boat Fisheries',
+            title='Head Boat Fisheries (net revenues)',
             name='',
             type="",
         )

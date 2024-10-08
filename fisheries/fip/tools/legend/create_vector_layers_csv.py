@@ -1,3 +1,12 @@
+"""
+Updates input CSV file (`IN`) with min and max values found in vector
+layers in the database where each layer exists in a specific column
+of a shared table.
+
+(min and max for 10 km raster grids were found by manually inspecting
+each layer in QGIS).
+
+"""
 import csv
 import os
 from sqlalchemy import func, MetaData, Table
