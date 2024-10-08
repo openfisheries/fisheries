@@ -1,4 +1,4 @@
-from ..processes.report import CSV, FISHERY
+from ..processes.shared import CSV, FISHERY
 
 
 def get_sheets(feature):

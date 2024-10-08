@@ -3,36 +3,11 @@ from collections import OrderedDict
 
 from pygeoapi.process.base import BaseProcessor, ProcessorExecuteError
 
-from ..fisheries.shrimp import shrimp_report
-from ..fisheries.reef.bottom import reef_report
-from ..fisheries.reef.diving import report as diving_report
-from ..fisheries.reef.buoys import report as buoys_report
-from ..fisheries.reef.gillnet import report as gill_net_report
-from ..fisheries.reef.trolling import report as trolling_report
-from ..fisheries.reef.headboat import report as headboat_report
-
 from ..format.excel import return_xlsx
-
+from .shared import CSV, HTML, XLSX, FISHERY, FISHERY_KEYS
 
 LOGGER = logging.getLogger(__name__)
 
-CSV = 'csv'
-HTML = 'html'
-XLSX = 'xlsx'
-
-# Dictionaries retain order since Python 3.7
-FISHERY = {
-    'shrimp': shrimp_report,
-    'reef': reef_report,
-    'diving': diving_report,
-    'buoys': buoys_report,
-    'gill_net': gill_net_report,
-    'trolling': trolling_report,
-    'headboat': headboat_report,
-}
-
-FISHERY_KEYS = FISHERY.keys()  # not sufficient for eager evaluation (returns a view object)
-FISHERY_KEYS = list(FISHERY.keys())  # see FISHERY_KEYS usage below
 
 # Process metadata and description
 PROCESS_METADATA = {
@@ -79,7 +54,7 @@ PROCESS_METADATA = {
         },
         'format': {
             'title': 'File format determining report type',
-            'description': "Specify 'html' or 'csv' (default 'html'). When choosing 'csv' you must also specify a single fishery",  # add 'xlsx' and 'pdf'
+            'description': "Specify 'csv', 'html' or 'xlsx' (default 'html'). When choosing 'csv' you must also specify a single fishery",  # add 'pdf'
             'schema': {
                 'type': 'string',
                 'enum': [CSV, HTML, XLSX]
@@ -142,22 +117,8 @@ class ReportProcessor(BaseProcessor):
         else:
             output = '<h2 class="text-center"><b>Landings and Revenues (2007-2021)</b></h2><br>'
             for func in FISHERY.values():
-                output += func(feature, report_type)['Report']
-            
+                output += func(feature, report_type)['Report']    
             outputs = {'Report': output}
-
-            '''OLD (remove)
-            outputs = {'Report': (
-                '<h2 class="text-center"><b>Landings and Revenues (2007-2021)</b></h2><br>'
-                + shrimp_report(feature, report_type)['Report']
-                + reef_report(feature, report_type)['Report']
-                + diving_report(feature, report_type)['Report']
-                + buoys_report(feature, report_type)['Report']
-                + gill_net_report(feature, report_type)['Report']
-                + trolling_report(feature, report_type)['Report']
-                + headboat_report(feature)['Report']
-            )}
-            '''
 
         return mimetype, outputs
 
