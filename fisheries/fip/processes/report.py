@@ -116,7 +116,8 @@ class ReportProcessor(BaseProcessor):
             outputs = return_xlsx(feature)
         else:
             # Note: default behaviour ignores fishery type (if specified)
-            output = '<h2 class="text-center"><b>Landings and Revenues (2007-2021)</b></h2><br>'
+            output = '<h2 class="text-center"><b>Landings and Revenues (2007-2021)</b></h2><br>';
+            output += '<p style="display: flex; justify-content: center; align-items: center;">Download <button style="margin-left: 5px; font-size: 8px;" id="download-xlsx" onclick="window.fipXlsxReport({feature});">XLSX</button></p>';
             for func in FISHERY.values():
                 output += func(feature, report_type)['Report']    
             outputs = {'Report': output}
