@@ -115,6 +115,7 @@ class ReportProcessor(BaseProcessor):
             #mimetype = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
             outputs = return_xlsx(feature)
         else:
+            # Note: default behaviour ignores fishery type (if specified)
             output = '<h2 class="text-center"><b>Landings and Revenues (2007-2021)</b></h2><br>'
             for func in FISHERY.values():
                 output += func(feature, report_type)['Report']    
