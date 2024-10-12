@@ -4,7 +4,7 @@ from ..processes.shared import CSV, FISHERY
 def get_sheets(feature):
     """ Returns an ordered dictionary of CSV results """
     results = {}
-    for name, func in FISHERY.values():
+    for name, func in FISHERY.items():
         results[name] = func(feature, CSV)['Report']
     return results
 
