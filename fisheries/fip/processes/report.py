@@ -112,12 +112,12 @@ class ReportProcessor(BaseProcessor):
                 report_func(feature, report_type)['Report']
             )}
         elif fishery is None and report_type == XLSX:
-            #mimetype = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            mimetype = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
             outputs = return_xlsx(feature)
         else:
             # Note: default behaviour ignores fishery type (if specified)
-            output = '<h2 class="text-center"><b>Landings and Revenues (2007-2021)</b></h2><br>';
-            output += f"""<p style="display: flex; justify-content: center; align-items: center;">Download <button style="margin-left: 5px; font-size: 8px;" id="download-xlsx" onclick='window.fipXlsxReport({feature});'>XLSX</button></p>""";
+            output = '<h2 class="text-center"><b>Landings and Revenues (2007-2021)</b></h2>';
+            output += f"""<p style="display: flex; justify-content: center; align-items: center;">Download entire report in Excel format <button style="margin-left: 5px; font-size: 8px;" id="download-xlsx" onclick='window.fipXlsxReport({feature});'>XLSX</button></p><br>""";
             for func in FISHERY.values():
                 output += func(feature, report_type)['Report']    
             outputs = {'Report': output}
