@@ -1,8 +1,12 @@
-from collections import OrderedDict
+import logging
 
 from ...report import report_by_feature
 from ...templates.reef.bottom import reef_bottom_template, reef_csv
 from ...templates.nodata import nodata_template
+
+
+LOGGER = logging.getLogger(__name__)
+
 
 # For RF10 layers we couldn't use the available totals because red snapper is also already included in
 # the mid-depth snapper total (double counting). See calc_totals below for more details.
@@ -50,7 +54,7 @@ species_revenues = ['RF10_rev_e_MS', 'RF10_rev_e_SS', 'RF10_rev_e_SG', 'RF10_rev
 
 def calc_totals(values, total_type):
     """ total_type = 'land' or 'rev' """
-    # Note: Red snapped is included in mid-depth snapper total
+    # Note: Red snapper is included in mid-depth snapper total
     #       therefore is is not included in species_landings and species_revenues
     actual_total = None
     other_species_total = None
@@ -73,6 +77,15 @@ def calc_totals(values, total_type):
             if v is not None:
                 species_total = species_total + v if species_total is not None else v
 
+    import json
+    LOGGER.error(json.dumps(values, indent=4))
+    LOGGER.error(f"species_total: {species_total}")
+
+    # TODO: It looks like the if statement below is probably incorrect, it
+    # should check that `species_total is not None` rather than checking
+    # that it is truthy (>0). But this would only cause the expression to
+    # not evaluate (and `other_species_total`` to remain None) when
+    # `species_total == 0`.
     if species_total and actual_total is not None:
         other_species_total = actual_total - species_total 
 
