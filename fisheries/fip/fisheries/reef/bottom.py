@@ -1,16 +1,13 @@
-import logging
-
 from ...report import report_by_feature
 from ...templates.reef.bottom import reef_bottom_template, reef_csv
 from ...templates.nodata import nodata_template
 
 
-LOGGER = logging.getLogger(__name__)
-
-
-# For RF10 layers we couldn't use the available totals because red snapper is also already included in
-# the mid-depth snapper total (double counting). See calc_totals below for more details.
+# For RF10 layers, red snapper is also already included in the mid-depth snapper total
+# Beware double counting (see calc_totals below for more details).
 reef_values = {
+    'RF10_land_overall': "",
+    'RF10_rev_overall': "",
     'RF10_land_e_RS': "",
     'RF10_rev_e_RS': "",
     'RF10_land_e_MS': "",
@@ -48,25 +45,17 @@ reef_values = {
 }
 
 
+# Note: Red snapper is included in mid-depth snapper total and therefore it is
+# not included in species_landings and species_revenues totals
 species_landings = ['RF10_land_e_MS', 'RF10_land_e_SS', 'RF10_land_e_SG', 'RF10_land_e_DG', 'RF10_land_e_TF', 'RF10_land_e_JA', 'RF10_land_e_TR', 'RF10_land_e_GP', 'RF10_land_e_CP']
 species_revenues = ['RF10_rev_e_MS', 'RF10_rev_e_SS', 'RF10_rev_e_SG', 'RF10_rev_e_DG', 'RF10_rev_e_TF', 'RF10_rev_e_JA', 'RF10_rev_e_TR', 'RF10_rev_e_GP', 'RF10_rev_e_CP']
 
 
-def calc_totals(values, total_type):
+def calc_totals(values, total_type, layer_type='RF10'):
     """ total_type = 'land' or 'rev' """
-    # Note: Red snapper is included in mid-depth snapper total
-    #       therefore is is not included in species_landings and species_revenues
-    actual_total = None
+
+    overall_total = values[f'{layer_type}_{total_type}_overall']
     other_species_total = None
-
-    # actual total
-    if (values[f'RF10_{total_type}_t_2007_2014'] is not None and
-        values[f'RF10_{total_type}_t_2015_2021'] is not None):
-
-        actual_total = (
-            values[f'RF10_{total_type}_t_2007_2014'] +
-            values[f'RF10_{total_type}_t_2015_2021']
-        )
 
     # calculate "other species" total (as actutal_total - species_total)
     lookup = species_landings if total_type=='land' else species_revenues
@@ -77,17 +66,12 @@ def calc_totals(values, total_type):
             if v is not None:
                 species_total = species_total + v if species_total is not None else v
 
-    import json
-    LOGGER.error(json.dumps(values, indent=4))
-    LOGGER.error(f"species_total: {species_total}")
+    if species_total is not None and overall_total is not None:
+        other_species_total = overall_total - species_total
 
-    # TODO: It looks like the if statement below is probably incorrect, it
-    # should check that `species_total is not None` rather than checking
-    # that it is truthy (>0). But this would only cause the expression to
-    # not evaluate (and `other_species_total`` to remain None) when
-    # `species_total == 0`.
-    if species_total and actual_total is not None:
-        other_species_total = actual_total - species_total 
+    # TODO: Calling function no longer needs to use a calculated total ("actual_total")
+    # instead they should use the overall total from the values dictionary directly
+    actual_total = overall_total
 
     return (
         f'{round(actual_total):,}' if actual_total is not None else '-',

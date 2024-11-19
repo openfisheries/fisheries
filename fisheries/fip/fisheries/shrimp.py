@@ -9,12 +9,10 @@ from fisheries.fip.db import Session
 from fisheries.fip.models import *
 from fisheries.fip.query.raster import from_polygon
 
+from fisheries.fip.fisheries.reef.bottom import calc_totals
 from ..templates.shrimp_report import shrimp_template, shrimp_csv
 from ..templates.nodata import nodata_template
 
-
-## NOTE: We're currently using calc_totals below, but presumably we could use the existing provided
-#        overall totals instead because we don't have the same issue as in the RF10 (reef bottom line) totals
 
 shrimp_values = {
     'SF10_land_e_BS': "",
@@ -24,7 +22,7 @@ shrimp_values = {
     'SF10_land_e_S': "",
     'SF10_land_e_T': "",
     'SF10_land_e_WS': "",
-#    'SF10_land_overall': "",
+    'SF10_land_overall': "",
     'SF10_land_s_AL': "",
     'SF10_land_s_FL': "",
     'SF10_land_s_LA': "",
@@ -39,7 +37,7 @@ shrimp_values = {
     'SF10_rev_e_S': "",
     'SF10_rev_e_T': "",
     'SF10_rev_e_WS': "",
-#    'SF10_rev_overall': "",
+    'SF10_rev_overall': "",
     'SF10_rev_s_AL': "",
     'SF10_rev_s_FL': "",
     'SF10_rev_s_LA': "",
@@ -48,7 +46,6 @@ shrimp_values = {
     'SF10_rev_t_2007_2014': "",
     'SF10_rev_t_2015_2021': "",
 }
-
 
 species_landings = ['SF10_land_e_BS', 'SF10_land_e_PS', 'SF10_land_e_RRS', 'SF10_land_e_RS', 'SF10_land_e_S', 'SF10_land_e_T', 'SF10_land_e_WS']
 species_revenues = ['SF10_rev_e_BS', 'SF10_rev_e_PS', 'SF10_rev_e_RRS', 'SF10_rev_e_RS', 'SF10_rev_e_S', 'SF10_rev_e_T', 'SF10_rev_e_WS']
@@ -108,40 +105,6 @@ def report_by_feature(geojson, variable):
             return from_polygon(session, variable, polygon_coordinates)
 
 
-def calc_totals(values, total_type):
-    """ total_type = 'land' or 'rev' """
-    # Note: Red snapped is included in mid-depth snapper total
-    #       therefore is is not included in species_landings and species_revenues
-    actual_total = None
-    other_species_total = None
-
-    # actual total
-    if (values[f'SF10_{total_type}_t_2007_2014'] is not None and
-        values[f'SF10_{total_type}_t_2015_2021'] is not None):
-
-        actual_total = (
-            values[f'SF10_{total_type}_t_2007_2014'] +
-            values[f'SF10_{total_type}_t_2015_2021']
-        )
-
-    # calculate "other species" total (as actutal_total - species_total)
-    lookup = species_landings if total_type=='land' else species_revenues
-
-    species_total = None
-    for k, v in values.items():
-        if k in lookup:
-            if v is not None:
-                species_total = species_total + v if species_total is not None else v
-
-    if species_total and actual_total is not None:
-        other_species_total = actual_total - species_total 
-
-    return (
-        f'{round(actual_total):,}' if actual_total is not None else '-',
-        f'{round(other_species_total):,}' if other_species_total is not None else '-', 
-    )
-
-
 def shrimp_report(feature, report_type):
     """
     Default to returning HTML unless report_type == 'csv'
@@ -162,8 +125,8 @@ def shrimp_report(feature, report_type):
             type="shrimp fisheries ",
         )
     else:
-        tot_land, other_species_land = calc_totals(values, total_type='land')
-        tot_rev, other_species_rev = calc_totals(values, total_type='rev')
+        tot_land, other_species_land = calc_totals(values, total_type='land', layer_type='SF10')
+        tot_rev, other_species_rev = calc_totals(values, total_type='rev', layer_type='SF10')
 
         if report_type == 'csv':
             # Remove thousands separators
